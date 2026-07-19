@@ -1,0 +1,105 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Content Digest — Weekly Report (2026-07-12 → 2026-07-18)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+:root { --bg:#0f172a;--panel:#1e293b;--panel2:#334155;--text:#e2e8f0;--muted:#94a3b8;
+  --border:#334155;--good:#10b981;--warn:#f59e0b;--bad:#ef4444; }
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.page{max-width:1280px;margin:0 auto;padding:16px 20px}
+h1{font-size:20px;margin:0 0 2px 0}
+h2{font-size:12px;margin:0 0 8px 0;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.sub{color:var(--muted);margin:0 0 14px 0;font-size:12px}
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:12px}
+.tile{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.tile .v{font-size:22px;font-weight:700;line-height:1.1}
+.tile .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:6px}
+.tile.good .v{color:var(--good)} .tile.warn .v{color:var(--warn)} .tile.bad .v{color:var(--bad)}
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:2fr 1fr} .grid-2-eq{grid-template-columns:1fr 1fr}
+.flow-row{display:grid;grid-template-columns:1fr 200px;gap:18px;align-items:center}
+.flow-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.flow-stat{background:var(--panel2);border-radius:8px;padding:8px 10px}
+.flow-stat .v{font-size:18px;font-weight:700;line-height:1.1}
+.flow-stat .l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.row{display:grid;gap:12px;margin-bottom:12px}
+canvas{max-width:100%;height:180px!important} canvas.donut-sm{height:160px!important;max-width:200px;justify-self:center}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+td.num{text-align:right;font-variant-numeric:tabular-nums} .muted{color:var(--muted)}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;background:var(--panel2)}
+.pill.good{background:rgba(16,185,129,.15);color:var(--good)}
+.pill.warn{background:rgba(245,158,11,.15);color:var(--warn)}
+.pill.bad{background:rgba(239,68,68,.15);color:var(--bad)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;margin-top:8px}
+</style></head><body><div class="page">
+<h1>Content Digest — Weekly Report</h1>
+<p class="sub">2026-07-12 → 2026-07-18 (UTC) · generated 2026-07-19 07:00 UTC</p>
+<div class="tiles">
+<div class="tile good"><div class="v">21/25</div><div class="l">items summarized</div></div>
+<div class="tile"><div class="v">94</div><div class="l">LLM calls</div></div>
+<div class="tile"><div class="v">$0.0000</div><div class="l">paid cost</div></div>
+<div class="tile good"><div class="v">9/7</div><div class="l">days with digest</div></div>
+<div class="tile"><div class="v">9/15</div><div class="l">active channels</div></div>
+<div class="tile good"><div class="v">0</div><div class="l">scheduler halts</div></div>
+</div>
+<div class="row grid grid-2-eq">
+<div class="panel"><h2>Daily digest flow</h2><div class="flow-row">
+<div class="flow-stats">
+<div class="flow-stat"><div class="v">22</div><div class="l">items</div></div>
+<div class="flow-stat"><div class="v">22</div><div class="l">LLM calls</div></div>
+<div class="flow-stat"><div class="v">3.9s / 15.9s</div><div class="l">p50 / p95 latency</div></div>
+<div class="flow-stat"><div class="v">41%</div><div class="l">fallback rate</div></div>
+</div><canvas id="dailyDonut" class="donut-sm"></canvas></div></div>
+<div class="panel"><h2>Historical digest flow</h2><div class="flow-row">
+<div class="flow-stats">
+<div class="flow-stat"><div class="v">0</div><div class="l">items</div></div>
+<div class="flow-stat"><div class="v">0</div><div class="l">LLM calls</div></div>
+<div class="flow-stat"><div class="v">0.0s / 0.0s</div><div class="l">p50 / p95 latency</div></div>
+<div class="flow-stat"><div class="v">0%</div><div class="l">fallback rate</div></div>
+</div><canvas id="histDonut" class="donut-sm"></canvas></div></div>
+</div>
+<div class="row grid grid-2">
+<div class="panel"><h2>Items per day, by job type</h2><canvas id="jobChart"></canvas></div>
+<div class="panel"><h2>Provider mix — all flows</h2><canvas id="providerDonut"></canvas></div>
+</div>
+<div class="row grid grid-2">
+<div class="panel"><h2>Provider mix over time</h2><canvas id="providerArea"></canvas></div>
+<div class="panel"><h2>Scheduler ticks per day</h2><canvas id="tickChart"></canvas></div>
+</div>
+<div class="row grid grid-2">
+<div class="panel"><h2>Per-channel volume</h2><canvas id="channelChart"></canvas>
+<div class="legend"><span class="muted">Stale (no items in 7d):</span> @MilkshakesPod, @NewMoneyYouTube, @PlanB_Bitcoin, @bobloukas3493, @glassnode, @wernereconomics</div></div>
+<div class="panel"><h2>Latency by provider (ms)</h2><canvas id="latencyChart"></canvas></div>
+</div>
+<div class="row grid grid-2">
+<div class="panel"><h2>Quality watch · output &lt; 200 tokens</h2>
+<table><thead><tr><th>Channel</th><th>Title</th><th>Provider</th><th>Tokens</th></tr></thead>
+<tbody><tr><td colspan='4' class='muted'>none — clean week</td></tr></tbody></table>
+<div class="legend"><span class="pill good">thinking-on items: 0</span>
+<span class="pill good">input-truncated: 0</span>
+<span class="pill">items via fallback: 8</span></div></div>
+<div class="panel"><h2>Cost &amp; quota headroom</h2>
+<table><thead><tr><th>Provider</th><th>Calls</th><th>Spent / Cap</th><th>Headroom</th></tr></thead><tbody>
+<tr><td>grok-4-1-fast</td><td class="num">0</td><td>$0.0000 / $0.10/day</td><td><span class="pill good">100%</span></td></tr>
+<tr><td>gemini-flash</td><td class="num">45</td><td>45 / 20 RPD/day</td><td><span class="pill good">free-tier</span></td></tr>
+<tr><td>gemini-flash-lite</td><td class="num">0</td><td>0 / 20 RPD/day</td><td><span class="pill good">free-tier</span></td></tr>
+<tr><td>ollama (local)</td><td class="num">0</td><td colspan="2" class="muted">unmetered (local Metal)</td></tr>
+</tbody></table></div>
+</div></div>
+<script>
+const D={"DAYS": ["2026-07-12", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-18"], "providers": ["gemini-3-5-flash", "gemini-flash"], "daily_provider_series": {"gemini-3-5-flash": [3, 13, 3, 1, 13, 8, 8], "gemini-flash": [5, 9, 5, 6, 11, 5, 4]}, "provider_colors": {"gemini-3-5-flash": "#94a3b8", "gemini-flash": "#4285f4"}, "job_types": ["daily_summarize", "daily_summarize_map", "kb_update", "kb_update_topic"], "daily_job_series": {"daily_summarize": [2, 4, 2, 1, 7, 3, 3], "daily_summarize_map": [0, 14, 0, 2, 13, 2, 5], "kb_update": [4, 2, 4, 2, 2, 6, 2], "kb_update_topic": [2, 2, 2, 2, 2, 2, 2]}, "job_colors": {"daily_summarize": "#10b981", "daily_summarize_map": "#94a3b8", "kb_update": "#94a3b8", "kb_update_topic": "#94a3b8"}, "provider_totals": {"gemini-3-5-flash": 49, "gemini-flash": 45}, "tick_series": {"completed": [2, 4, 2, 1, 5, 3, 3], "halted": [0, 0, 0, 0, 0, 0, 0], "no_work": [286, 284, 286, 287, 283, 285, 285]}, "tick_colors": {"completed": "#10b981", "halted": "#ef4444", "no_work": "#cbd5e1"}, "channels": {"@AkshatZayn": {"items": 2, "summarized": 2}, "@ChrisWillx": {"items": 3, "summarized": 3}, "@ForwardGuidanceBW": {"items": 1, "summarized": 1}, "@HiddenForces": {"items": 2, "summarized": 2}, "@TheDiaryOfACEO": {"items": 2, "summarized": 2}, "@bravosresearch": {"items": 2, "summarized": 1}, "@cryptocurrentlyYT": {"items": 1, "summarized": 1}, "@eurodollaruniversity": {"items": 7, "summarized": 5}, "@maneco64": {"items": 5, "summarized": 4}}, "latency": {"gemini-3-5-flash": {"p50": 9742, "p95": 28455, "n": 49}, "gemini-flash": {"p50": 7891, "p95": 16497, "n": 45}}, "flow_stats": {"daily_summarize": {"label": "Daily digest flow", "calls": 22, "items": 22, "providers": {"gemini-3-5-flash": 13, "gemini-flash": 9}, "p50_ms": 3854, "p95_ms": 15947, "cost_usd": 0.0, "fallback_pct": 40.90909090909091}, "historical_summarize": {"label": "Historical digest flow", "calls": 0, "items": 0, "providers": {}, "p50_ms": 0, "p95_ms": 0, "cost_usd": 0.0, "fallback_pct": 0}}};
+const opts={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#cbd5e1',boxWidth:10,font:{size:11}}}},scales:{x:{stacked:true,ticks:{color:'#94a3b8',font:{size:11}},grid:{color:'#1e293b'}},y:{stacked:true,ticks:{color:'#94a3b8',font:{size:11}},grid:{color:'#1e293b'}}}};
+new Chart(document.getElementById('jobChart'),{type:'bar',data:{labels:D.DAYS,datasets:D.job_types.map(j=>({label:j,data:D.daily_job_series[j],backgroundColor:D.job_colors[j],stack:'a'}))},options:opts});
+function donut(id,m,p){const l=Object.keys(m);return new Chart(document.getElementById(id),{type:'doughnut',data:{labels:l,datasets:[{data:l.map(k=>m[k]),backgroundColor:l.map(k=>D.provider_colors[k]||'#94a3b8'),borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:4},plugins:{legend:{position:p||'right',labels:{color:'#cbd5e1',font:{size:10},boxWidth:10,padding:6}}}}});}
+donut('providerDonut',D.provider_totals,'right');
+donut('dailyDonut',D.flow_stats.daily_summarize.providers,'bottom');
+donut('histDonut',D.flow_stats.historical_summarize.providers,'bottom');
+new Chart(document.getElementById('providerArea'),{type:'line',data:{labels:D.DAYS,datasets:D.providers.map(p=>({label:p,data:D.daily_provider_series[p],backgroundColor:D.provider_colors[p]+'99',borderColor:D.provider_colors[p],fill:true,tension:.25,pointRadius:2}))},options:opts});
+new Chart(document.getElementById('tickChart'),{type:'bar',data:{labels:D.DAYS,datasets:['completed','halted','no_work'].map(td=>({label:td,data:D.tick_series[td],backgroundColor:D.tick_colors[td],stack:'a'}))},options:opts});
+new Chart(document.getElementById('channelChart'),{type:'bar',data:{labels:Object.keys(D.channels),datasets:[{label:'items',data:Object.values(D.channels).map(c=>c.items),backgroundColor:'#6366f1'}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#94a3b8'},grid:{color:'#1e293b'}},y:{ticks:{color:'#94a3b8'},grid:{color:'#1e293b'}}}}});
+const L=Object.keys(D.latency);
+new Chart(document.getElementById('latencyChart'),{type:'bar',data:{labels:L,datasets:[{label:'p50',data:L.map(p=>D.latency[p].p50),backgroundColor:'#10b981'},{label:'p95',data:L.map(p=>D.latency[p].p95),backgroundColor:'#f59e0b'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#cbd5e1',boxWidth:10,font:{size:11}}}},scales:{x:{ticks:{color:'#94a3b8'},grid:{color:'#1e293b'}},y:{ticks:{color:'#94a3b8'},grid:{color:'#1e293b'}}}}});
+</script></body></html>
