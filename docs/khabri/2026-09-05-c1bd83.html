@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="light dark">
+<title>De Daily Khabri — Zaterdag · 5 september 2026 · Editie Nr. 52</title>
+<style>
+/* De Daily Khabri, mobile edition.
+   Palette and type are pulled from the printed paper, not from a web template:
+   Didot masthead -> ui-serif (New York on iOS, where this is actually read),
+   black ink on newsprint, hairline rules. The single accent is a Dutch-press
+   vermilion, spent only on kickers, time badges and the countdown numeral. */
+:root{
+  --paper:#fbfaf7; --ink:#111214; --muted:#6a6d73; --hair:#e2e1dc;
+  --rule:#c9c7c1; --accent:#c8102e; --up:#0a7d46; --dn:#c8102e; --wet:#2b6ca3;
+  --card:#ffffff; --shadow:0 1px 2px rgba(17,18,20,.05);
+  --serif:ui-serif,"New York","Iowan Old Style",Charter,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101113; --ink:#e8e7e3; --muted:#93969c; --hair:#26282c;
+    --rule:#3a3d42; --accent:#ff6b73; --up:#4cc98a; --dn:#ff6b73; --wet:#4a97d0;
+    --card:#17181b; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101113; --ink:#e8e7e3; --muted:#93969c; --hair:#26282c;
+  --rule:#3a3d42; --accent:#ff6b73; --up:#4cc98a; --dn:#ff6b73; --wet:#4a97d0;
+  --card:#17181b; --shadow:none;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--serif);padding:0 0 3rem}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:44rem;margin:0 auto;padding:0 1.15rem}
+
+/* masthead */
+header.mast{text-align:center;padding:1.6rem 0 0}
+.mast h1{font:400 clamp(2.1rem,11vw,3.1rem)/1 var(--serif);letter-spacing:.005em;text-wrap:balance}
+.mast .sub{font:600 .6rem/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;
+           color:var(--muted);margin-top:.55rem}
+.rule2{border-top:2.5px solid var(--ink);border-bottom:1px solid var(--ink);height:3px;margin:.75rem 0 0}
+.dateline{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;
+          font:.72rem/1.45 var(--sans);color:var(--muted);padding:.6rem 0;
+          border-bottom:1px solid var(--hair);text-align:left}
+.dateline .r{text-align:right}
+
+/* markets */
+.markets{display:flex;gap:1.2rem;overflow-x:auto;padding:.65rem 1.15rem;margin:0 -1.15rem;
+         border-bottom:1px solid var(--hair);scrollbar-width:none;
+         font:.75rem/1 var(--sans);font-variant-numeric:tabular-nums}
+.markets::-webkit-scrollbar{display:none}
+.tk{display:flex;gap:.4rem;white-space:nowrap;align-items:baseline}
+.tk .n{color:var(--muted)}
+.tk .v{font-weight:600}
+.tk.up .v{color:var(--up)} .tk.dn .v{color:var(--dn)}
+.tk.up .v::before{content:"▲ ";font-size:.6em}
+.tk.dn .v::before{content:"▼ ";font-size:.6em}
+
+/* section furniture */
+section{margin-top:1.75rem}
+h2.sh{font:700 .64rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+      padding-bottom:.42rem;border-bottom:1.5px solid var(--ink);margin-bottom:.9rem}
+
+/* rain chart — the only colour beyond the vermilion accent is --wet, a single
+   series: stepped area (hourly buckets, never smoothed), bands over the hours it
+   actually rains, one direct label on the peak. Strokes are non-scaling so the
+   hairlines stay hairlines when the SVG is scaled up on a wide screen. */
+.rain{background:var(--card);border:1px solid var(--hair);border-radius:10px;
+      padding:.85rem .9rem .75rem;box-shadow:var(--shadow)}
+.rain .lede{font:.7rem/1.4 var(--sans);color:var(--muted);letter-spacing:.01em;
+            margin-bottom:.45rem}
+.rain svg{display:block;width:100%;height:auto;max-width:34rem;margin:0 auto}
+.rain .cap{margin-top:.5rem;font:.82rem/1.45 var(--sans);color:var(--ink)}
+.rc-grid{stroke:var(--hair);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.rc-base{stroke:var(--rule);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.rc-tick{fill:var(--muted);font:400 10px var(--sans);font-variant-numeric:tabular-nums}
+.rc-band{fill:var(--wet);opacity:.14}
+.rc-area{fill:var(--wet);opacity:.12}
+.rc-line{fill:none;stroke:var(--wet);stroke-width:2;stroke-linejoin:round;
+         stroke-linecap:round;vector-effect:non-scaling-stroke}
+.rc-peak{fill:var(--ink);font:600 10px var(--sans);font-variant-numeric:tabular-nums}
+.rc-hit{fill:transparent}
+
+/* agenda board */
+.board{display:grid;gap:.6rem}
+.day{background:var(--card);border:1px solid var(--hair);border-radius:10px;
+     padding:.8rem .9rem;box-shadow:var(--shadow)}
+.day h3{font:700 .58rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+        color:var(--muted);margin-bottom:.55rem}
+.day ul{list-style:none;display:grid;gap:.45rem}
+.day li{display:flex;gap:.65rem;align-items:flex-start;font:.94rem/1.42 var(--serif)}
+.day li .tx{flex:1 1 auto;min-width:0}
+.day .t{flex:0 0 3.2rem;font:600 .78rem/1.6 var(--sans);color:var(--accent);
+        font-variant-numeric:tabular-nums}
+/* the weather cell of an agenda line: what it is doing AT that hour. The day's
+   own conditions are in the masthead ear and the chart above — repeating them
+   against every appointment would say nothing about the appointment. */
+.day .wx{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:.06rem;
+         margin-left:auto;padding-left:.6rem;border-left:1px solid var(--hair);
+         align-self:stretch;justify-content:center}
+.day .wx svg{width:19px;height:20.6px;display:block;overflow:visible}
+.day .wx .deg{font:600 .66rem/1 var(--sans);color:var(--muted);
+              font-variant-numeric:tabular-nums}
+.wx-ink{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;
+        stroke-linejoin:round}
+.wx-wet{fill:none;stroke:var(--wet);stroke-width:1.8;stroke-linecap:round;
+        stroke-linejoin:round}
+.count{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--hair);
+       border-radius:10px;padding:.85rem .9rem;box-shadow:var(--shadow)}
+.count .big{font:400 2.5rem/1 var(--serif);color:var(--accent);font-variant-numeric:tabular-nums}
+.count .lab{font:.93rem/1.35 var(--serif)}
+.count .lab .x{display:block;color:var(--muted);font-size:.8rem;margin-top:.2rem}
+
+/* lead */
+.kicker{font:700 .6rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;
+        color:var(--accent);margin-bottom:.55rem}
+h2.lead{font:700 clamp(1.55rem,6.8vw,2.1rem)/1.1 var(--serif);letter-spacing:-.012em;
+        margin-bottom:.75rem;text-wrap:balance}
+.lead-body p{font-size:1.03rem;line-height:1.63;margin-bottom:.8rem}
+.desk{margin-top:1.05rem;padding-top:.95rem;border-top:1px solid var(--hair);
+      font-size:.97rem;line-height:1.58}
+.desk b.runin{text-transform:uppercase;letter-spacing:.07em;font-size:.84rem}
+
+/* adviseur + briefs */
+.item{padding:.95rem 0;border-bottom:1px solid var(--hair)}
+.item:last-child{border-bottom:0}
+.item h3{font:600 1.03rem/1.32 var(--serif);margin-bottom:.38rem;text-wrap:balance}
+.item p{font-size:.95rem;line-height:1.56}
+.item .act{display:block;margin-top:.45rem;font-weight:700}
+.item .win{display:block;margin-top:.32rem;font:.83rem/1.45 var(--sans);color:var(--muted)}
+.item.prop{font-style:italic}
+.src{font:italic .81rem/1.5 var(--serif);color:var(--muted)}
+.sub-sh{font:700 .6rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+        color:var(--muted);margin:1.15rem 0 .1rem;padding-top:.95rem;border-top:1px solid var(--hair)}
+.status{margin-top:1.05rem;padding-top:.75rem;border-top:1px solid var(--rule);
+        font:.83rem/1.5 var(--sans);color:var(--muted)}
+.status .od{font-weight:700;color:var(--accent)}
+
+/* feature boxes */
+.feature{background:var(--card);border:1px solid var(--rule);border-radius:10px;
+         padding:1.05rem;margin-bottom:.85rem;box-shadow:var(--shadow)}
+.feature h3{font:700 .6rem/1.35 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+            color:var(--accent);margin-bottom:.6rem}
+.feature p{font-size:.95rem;line-height:1.58}
+
+/* station log + colophon */
+.station{list-style:none;display:grid;gap:.45rem}
+.station li{font:.88rem/1.5 var(--sans)}
+footer{margin-top:2.1rem;padding-top:.95rem;border-top:2.5px solid var(--ink);
+       font:.79rem/1.5 var(--sans);color:var(--muted)}
+footer .otd{margin-bottom:.55rem;color:var(--ink)}
+footer b{letter-spacing:.14em;font-size:.7rem}
+</style>
+</head>
+<body>
+<header class="mast"><div class="wrap">
+<h1>De Daily Khabri</h1>
+<div class="sub">The Agarwal–Kadani Household · Amsterdam</div>
+<div class="rule2"></div>
+<div class="dateline">
+<div class="l">☂ Motregen 20° / 16°<br>Regen: 13:00–14:00<br>Zon 06:58–20:19</div>
+<div class="r">Zaterdag<br>5 september 2026<br>Editie Nr. 52</div>
+</div>
+<div class="markets">
+<span class="tk up"><span class="n">AEX</span><span class="v">0.70%</span></span>
+<span class="tk up"><span class="n">S&amp;P</span><span class="v">0.09%</span></span>
+<span class="tk up"><span class="n">Goud</span><span class="v">1.03%</span></span>
+<span class="tk dn"><span class="n">BKNG</span><span class="v">6.00%</span></span>
+<span class="tk dn"><span class="n">LULU</span><span class="v">16.72%</span></span>
+<span class="tk dn"><span class="n">FIG</span><span class="v">16.31%</span></span>
+<span class="tk up"><span class="n">ADA</span><span class="v">7.21%</span></span>
+<span class="tk up"><span class="n">EUR/INR 109.73</span><span class="v">1.81%</span></span>
+</div>
+</div></header>
+<main class="wrap">
+<section><h2 class="sh">Regenkans</h2><div class="rain"><div class="lede">Kans op regen · chance of rain · 00:00–24:00</div><svg viewBox="0 0 360 132" role="img" aria-label="Nat rond 12:00–15:00 - piek 57% om 14:00"><rect class="rc-band" x="193.0" y="16.0" width="38.8" height="80.0"/><path class="rc-grid" d="M38.0 16.0H348.0"/><text class="rc-tick" x="32.0" y="19.4" text-anchor="end">100%</text><path class="rc-grid" d="M38.0 56.0H348.0"/><text class="rc-tick" x="32.0" y="59.4" text-anchor="end">50%</text><path class="rc-base" d="M38.0 96.0H348.0"/><path class="rc-area" d="M38.0 96.0L38.0 96.038.0 96.0L50.9 96.0L50.9 96.0L63.8 96.0L63.8 96.0L76.8 96.0L76.8 96.0L89.7 96.0L89.7 96.0L102.6 96.0L102.6 96.0L115.5 96.0L115.5 96.0L128.4 96.0L128.4 96.0L141.3 96.0L141.3 94.4L154.2 94.4L154.2 90.4L167.2 90.4L167.2 84.8L180.1 84.8L180.1 78.4L193.0 78.4L193.0 68.0L205.9 68.0L205.9 56.0L218.8 56.0L218.8 50.4L231.8 50.4L231.8 56.8L244.7 56.8L244.7 68.8L257.6 68.8L257.6 80.0L270.5 80.0L270.5 87.2L283.4 87.2L283.4 92.0L296.3 92.0L296.3 96.0L309.2 96.0L309.2 96.0L322.2 96.0L322.2 96.0L335.1 96.0L335.1 96.0L348.0 96.0L348.0 96.0Z"/><path class="rc-line" d="M38.0 96.0L50.9 96.0L50.9 96.0L63.8 96.0L63.8 96.0L76.8 96.0L76.8 96.0L89.7 96.0L89.7 96.0L102.6 96.0L102.6 96.0L115.5 96.0L115.5 96.0L128.4 96.0L128.4 96.0L141.3 96.0L141.3 94.4L154.2 94.4L154.2 90.4L167.2 90.4L167.2 84.8L180.1 84.8L180.1 78.4L193.0 78.4L193.0 68.0L205.9 68.0L205.9 56.0L218.8 56.0L218.8 50.4L231.8 50.4L231.8 56.8L244.7 56.8L244.7 68.8L257.6 68.8L257.6 80.0L270.5 80.0L270.5 87.2L283.4 87.2L283.4 92.0L296.3 92.0L296.3 96.0L309.2 96.0L309.2 96.0L322.2 96.0L322.2 96.0L335.1 96.0L335.1 96.0L348.0 96.0"/><text class="rc-peak" x="225.3" y="45.4" text-anchor="middle">57%</text><text class="rc-tick" x="38.0" y="112.0" text-anchor="start">00u</text><text class="rc-tick" x="76.8" y="112.0" text-anchor="middle">03u</text><text class="rc-tick" x="115.5" y="112.0" text-anchor="middle">06u</text><text class="rc-tick" x="154.2" y="112.0" text-anchor="middle">09u</text><text class="rc-tick" x="193.0" y="112.0" text-anchor="middle">12u</text><text class="rc-tick" x="231.8" y="112.0" text-anchor="middle">15u</text><text class="rc-tick" x="270.5" y="112.0" text-anchor="middle">18u</text><text class="rc-tick" x="309.2" y="112.0" text-anchor="middle">21u</text><text class="rc-tick" x="348.0" y="112.0" text-anchor="end">24u</text><rect class="rc-hit" x="38.0" y="16.0" width="12.9" height="80.0"><title>00:00 · 0% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="50.9" y="16.0" width="12.9" height="80.0"><title>01:00 · 0% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="63.8" y="16.0" width="12.9" height="80.0"><title>02:00 · 0% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="76.8" y="16.0" width="12.9" height="80.0"><title>03:00 · 0% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="89.7" y="16.0" width="12.9" height="80.0"><title>04:00 · 0% kans · 0 mm · 17°</title></rect><rect class="rc-hit" x="102.6" y="16.0" width="12.9" height="80.0"><title>05:00 · 0% kans · 0 mm · 17°</title></rect><rect class="rc-hit" x="115.5" y="16.0" width="12.9" height="80.0"><title>06:00 · 0% kans · 0 mm · 17°</title></rect><rect class="rc-hit" x="128.4" y="16.0" width="12.9" height="80.0"><title>07:00 · 0% kans · 0 mm · 17°</title></rect><rect class="rc-hit" x="141.3" y="16.0" width="12.9" height="80.0"><title>08:00 · 2% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="154.2" y="16.0" width="12.9" height="80.0"><title>09:00 · 7% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="167.2" y="16.0" width="12.9" height="80.0"><title>10:00 · 14% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="180.1" y="16.0" width="12.9" height="80.0"><title>11:00 · 22% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="193.0" y="16.0" width="12.9" height="80.0"><title>12:00 · 35% kans · 0.1 mm · 18°</title></rect><rect class="rc-hit" x="205.9" y="16.0" width="12.9" height="80.0"><title>13:00 · 50% kans · 0 mm · 19°</title></rect><rect class="rc-hit" x="218.8" y="16.0" width="12.9" height="80.0"><title>14:00 · 57% kans · 0 mm · 19°</title></rect><rect class="rc-hit" x="231.8" y="16.0" width="12.9" height="80.0"><title>15:00 · 49% kans · 0 mm · 20°</title></rect><rect class="rc-hit" x="244.7" y="16.0" width="12.9" height="80.0"><title>16:00 · 34% kans · 0 mm · 20°</title></rect><rect class="rc-hit" x="257.6" y="16.0" width="12.9" height="80.0"><title>17:00 · 20% kans · 0 mm · 20°</title></rect><rect class="rc-hit" x="270.5" y="16.0" width="12.9" height="80.0"><title>18:00 · 11% kans · 0 mm · 19°</title></rect><rect class="rc-hit" x="283.4" y="16.0" width="12.9" height="80.0"><title>19:00 · 5% kans · 0 mm · 19°</title></rect><rect class="rc-hit" x="296.3" y="16.0" width="12.9" height="80.0"><title>20:00 · 0% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="309.2" y="16.0" width="12.9" height="80.0"><title>21:00 · 0% kans · 0 mm · 18°</title></rect><rect class="rc-hit" x="322.2" y="16.0" width="12.9" height="80.0"><title>22:00 · 0% kans · 0 mm · 17°</title></rect><rect class="rc-hit" x="335.1" y="16.0" width="12.9" height="80.0"><title>23:00 · 0% kans · 0 mm · 16°</title></rect></svg><div class="cap">Nat rond <b>12:00–15:00</b> · piek 57% om 14:00</div></div></section>
+<section><h2 class="sh">Agenda</h2><div class="board">
+<div class="day"><h3>Vandaag · Today</h3><ul>
+<li><span class="tx">Geen afspraken — een rustige zaterdag.</span></li>
+</ul></div>
+<div class="day"><h3>Morgen · Tomorrow</h3><ul>
+<li><span class="tx">Geen afspraken bekend</span></li>
+</ul></div>
+<div class="day"><h3>Week Ahead</h3><ul>
+<li><span class="tx">Ma 7 sep · Rondleiding CompaNanny, 12:00</span></li>
+<li><span class="tx">Di 8 sep · Verloskundige, 16:00</span></li>
+<li><span class="tx">Wo 9 sep · Alice Agarwal jarig</span></li>
+<li><span class="tx">Do 10 sep · Mom&amp;Co, eerste les 19:00</span></li>
+</ul></div>
+<div class="day"><h3>Notices</h3><ul>
+<li><span class="tx">◆ Alice Agarwal jarig — woensdag 9 september</span></li>
+<li><span class="tx">▸ CompaNanny wacht op antwoord: woensdag erbij, of terug op de wachtlijst</span></li>
+<li><span class="tx">▸ Het ondertekenverzoek staat nog twee weken open</span></li>
+</ul></div>
+<div class="count"><div class="big">54</div><div class="lab">days until <b>Baby</b><span class="x">111 days until Eerste kerstdag</span></div></div>
+</div></section>
+<section>
+<div class="kicker">★ Lead Story</div>
+<h2 class="lead">No Tuesday — But The Contract Arrives</h2>
+<div class="lead-body"><p>Demi, of CompaNanny’s planning and placement team, answered yesterday morning, and the answer is half a no: there is no availability on the Tuesday. Kindje Agarwal stays on the waiting list, and would we take the Wednesday in the meantime — or go back to waiting? Twelve hours later the ondertekenverzoek arrived: the offer itself, to be opened and signed digitally through a link, and it stays open two weeks. So the question has stopped being abstract. Monday and Wednesday from 3 May 2027, signed inside the fortnight; or Monday and Tuesday, on a list with no date on it. Their office answers on weekdays between nine and four, and Monday’s rondleiding at Cornelis Dirkszstraat falls before either clock runs out.</p></div>
+<div class="desk"><b class="runin">Family Desk —</b> A sixth aanmelding went out yesterday, this one to Akros: a rondleiding requested at KDV de Pionier, and by the afternoon the inschrijving was acknowledged — Monday and Tuesday, full days, from 3 May 2027. The official confirmation follows after processing.</div>
+</section>
+<section><h2 class="sh">De Adviseur</h2>
+<div class="item"><h3>Griepprik voor zwangeren (the free flu jab in pregnancy)</h3><p><span class="act">▸ Bel in de eerste week van oktober zélf het consultatiebureau (JGZ) en vraag om een afspraak zo snel mogelijk ná 15 oktober — wacht niet op de uitnodigingsbrief, en breng het dinsdag bij de verloskundige ter sprake. Iedere zwangere van 22 weken of langer hoort sinds enkele jaren bij de doelgroep, en vrijwel geen nieuwkomer weet dat; de antistoffen gaan via de moeder naar het kind, dat zich de eerste maanden zelf niet tegen griep kan laten inenten. Neem in datzelfde telefoontje de kinkhoestprik mee — de 22-wekenprik, ook gratis. Is die gehaald, dan krijgt de baby prikken bij 3, 5 en 12 maanden; is hij niet gehaald, dan komt er een extra bij 2 maanden. Weet u het niet zeker, controleer dat nu en niet in november.</span><span class="win">het griepseizoen opent pas 15 oktober, en na de bevalling valt u er niet meer onder — met 29 oktober als uitgerekende datum is het venster in de praktijk twee weken breed</span> <span class="src">— rivm.nl · geverifieerd 5 sep</span></p></div>
+<div class="sub-sh">Op de horizon — wat er aankomt</div>
+<div class="item"><h3>Bekkenfysiotherapie na de bevalling (pelvic-floor therapy after birth)</h3><p>de basisverzekering vergoedt bij urine-incontinentie maximaal de eerste negen behandelingen, en dat is een eenmalig recht, geen jaarlijks tegoed; weeg het mee in de overstapronde die 12 november opengaat en 31 december sluit. <span class="src">rijksoverheid.nl · geverifieerd 5 sep</span></p></div>
+<div class="status">□ <b>Khabri Reported</b> — 79 open, <span class="od">6 achterstallig (overdue)</span>; oudste: aangifte 2025 mét uitstel, 4 dagen. <span class="src">stand 06:45</span></div>
+</section>
+<section>
+<div class="feature">
+<h3>De Kleine Khabri — Voor de aanstaande ouders · Week 32</h3>
+<p>Week thirty-two, day four, and fifty-four still to run. The growing is mostly weight now — something like two hundred grams a week — and the bones are hardening everywhere except the skull, which stays deliberately soft. Elders — a thread worth reading before the kraamweek, not during it. In r/ScienceBasedParenting a parent due in December asked how old a newborn should be before it meets people, and how to put that to family. The replies converge on one practical point rather than a rule: the agreement is far easier to make <i>before</i> the birth than after. Here the kraamweek already fills part of the first week, so what is left to settle is simply who comes in which week, and for how long. <span>r/ScienceBasedParenting</span> · And from r/daddit, a man three weeks out asking how a bevalling actually announces itself. The fathers answering describe a start far more gradual than expected, and a hospital role that is mostly steady company while the care goes to the mother. <span>r/daddit</span></p>
+</div>
+<div class="feature">
+<h3>Deep Dive — Gold Is Money Again</h3>
+<p>maneco64 reads a UBS chief strategist’s line — that gold is money again — as the moment a reversal finished. In 2004 the <i>Financial Times</i> called gold a barbaric relic bound for the way of the dodo. The measure it had been judged by, gold against real yields, broke in February 2022, when Western governments froze $630 billion of Russia’s reserves and every reserve manager learned that sovereign debt can become unavailable overnight. Developing-country central banks have since taken gold from five per cent of reserves to eleven, still short of the twenty-six developed markets hold. Closer to home, De Nederlandsche Bank is bringing a large part of its own gold back from New York and Ottawa — some to London, some to a military base in Zeist. <span>— maneco64</span></p>
+</div>
+</section>
+<section><h2 class="sh">Station Log</h2><ul class="station">
+<li>⚠ Mail bridge and the household data service down since 05:03 — this morning’s post and agenda still came through.</li>
+</ul></section>
+<footer>
+<div class="otd"><b>ON THIS DAY</b> — 1980: the Gotthard road tunnel opens in Switzerland, at 16.9 km then the longest in the world.</div>
+<div class="colo">Editie Nr. 52 · generated 07:10 ·</div>
+</footer>
+</main>
+</body>
+</html>
