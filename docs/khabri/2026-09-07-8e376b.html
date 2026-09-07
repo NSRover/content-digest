@@ -77,11 +77,10 @@ footer .src a{color:inherit;text-decoration:underline;text-underline-offset:2px;
 
 /* markets */
 /* Since 2026-09-07 this sits in the body above *Op de horizon*, not under the
-   masthead, so it carries a rule on BOTH sides to read as its own band rather
-   than as the bottom edge of whatever precedes it. */
-.markets{display:flex;gap:1.2rem;overflow-x:auto;padding:.65rem 1.15rem;
-         margin:1.1rem -1.15rem;border-top:1px solid var(--hair);
-         border-bottom:1px solid var(--hair);scrollbar-width:none;
+   masthead. It carries NO rules of its own — the tickers are already a visually
+   distinct band, and bracketing them in hairlines only added clutter. */
+.markets{display:flex;gap:1.2rem;overflow-x:auto;padding:.2rem 1.15rem;
+         margin:1.1rem -1.15rem;scrollbar-width:none;
          font:.75rem/1 var(--sans);font-variant-numeric:tabular-nums}
 .markets::-webkit-scrollbar{display:none}
 .tk{display:flex;gap:.4rem;white-space:nowrap;align-items:baseline}
@@ -96,8 +95,10 @@ section{margin-top:1.75rem}
 /* The day chart carries no heading and no rule, and sits straight under the
    masthead — so it gets a small top margin of its own rather than a section's. */
 section.wx-card{margin-top:.9rem}
-/* the bulletin, closing the card under the plot */
-.rain .wxb{margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--hair);
+/* The bulletin, closing the card under the plot. Centred, and with NO rule above
+   it — it belongs to the chart it sits under, and a divider made it read as a
+   separate block inside the same card. */
+.rain .wxb{margin-top:.55rem;text-align:center;
            font:italic 400 .9rem/1.35 var(--serif);color:var(--ink);
            text-wrap:balance}
 h2.sh{font:700 .64rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
