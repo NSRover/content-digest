@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="light dark">
+<title>De Daily Khabri — Zaterdag · 24 oktober 2026 · Editie Nr. 100</title>
+<style>
+/* De Daily Khabri, mobile edition.
+   Palette and type are pulled from the printed paper, not from a web template:
+   Didot masthead -> ui-serif (New York on iOS, where this is actually read),
+   black ink on newsprint, hairline rules. The single accent is a Dutch-press
+   vermilion, spent only on kickers, time badges and the countdown numeral. */
+:root{
+  --paper:#fbfaf7; --ink:#111214; --muted:#6a6d73; --hair:#e2e1dc;
+  --rule:#c9c7c1; --accent:#c8102e; --up:#0a7d46; --dn:#c8102e; --wet:#2b6ca3;
+  --card:#ffffff; --shadow:0 1px 2px rgba(17,18,20,.05);
+  --serif:ui-serif,"New York","Iowan Old Style",Charter,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  /* temperature ramp, -3C -> 30C. Tuned dark enough to hold a 2px line on
+     newsprint; the dark theme lifts the same hues off near-black below. */
+  --tc0:#3d4db8; --tc1:#2f7ec9; --tc2:#1f968f; --tc3:#5d9b2f;
+  --tc4:#b8912a; --tc5:#e07a1f; --tc6:#d63b1f; --tc7:#a3181a;
+  --sunup:#d99a10; --sundown:#b8532c;   /* dawn gold, dusk ember */
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101113; --ink:#e8e7e3; --muted:#93969c; --hair:#26282c;
+    --rule:#3a3d42; --accent:#ff6b73; --up:#4cc98a; --dn:#ff6b73; --wet:#4a97d0;
+    --card:#17181b; --shadow:none;
+    --tc0:#6f7ee0; --tc1:#4f9ee8; --tc2:#2fb9ae; --tc3:#7fc44a;
+    --tc4:#e0be48; --tc5:#f79a3c; --tc6:#f2603f; --tc7:#d63b32;
+    --sunup:#f7c451; --sundown:#ef8a5c;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101113; --ink:#e8e7e3; --muted:#93969c; --hair:#26282c;
+  --rule:#3a3d42; --accent:#ff6b73; --up:#4cc98a; --dn:#ff6b73; --wet:#4a97d0;
+  --card:#17181b; --shadow:none;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--serif);padding:0 0 3rem}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:44rem;margin:0 auto;padding:0 1.15rem}
+
+/* masthead */
+header.mast{text-align:center;padding:1.6rem 0 0}
+.mast h1{font:400 clamp(2.1rem,11vw,3.1rem)/1 var(--serif);letter-spacing:.005em;text-wrap:balance}
+.mast .sub{font:600 .6rem/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;
+           color:var(--muted);margin-top:.55rem}
+.rule2{border-top:2.5px solid var(--ink);border-bottom:1px solid var(--ink);height:3px;margin:.75rem 0 0}
+/* No bottom rule (2026-09-07): the day-chart card sits directly beneath, and a
+   divider between the word of the day and the card was one line too many. */
+.dateline{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;
+          font:.72rem/1.45 var(--sans);color:var(--muted);padding:.6rem 0 0;
+          text-align:left}
+.dateline .r{text-align:right;flex:0 0 auto}
+/* the human bulletin in the left ear: a person's voice, so italic serif against
+   the sans furniture around it. The byline carries Buienradar's required credit
+   and link — see masthead_left(). */
+.dateline .l{flex:1 1 auto;min-width:0}
+.dateline .bul{font:italic 400 .92rem/1.35 var(--serif);color:var(--ink);
+               text-wrap:balance}
+.dateline .by{margin-top:.2rem;font:600 .58rem/1.4 var(--sans);letter-spacing:.13em;
+              text-transform:uppercase;color:var(--muted)}
+.dateline .by a{color:inherit;text-decoration:underline;text-underline-offset:2px;
+                text-decoration-color:var(--hair)}
+.dateline .by b{color:var(--ink)}
+.dateline .by .def{text-transform:none;letter-spacing:.01em;font-weight:400;
+                   margin-left:.35em}
+footer .src{margin-top:.5rem;font:.7rem/1.5 var(--sans);color:var(--muted)}
+footer .src a{color:inherit;text-decoration:underline;text-underline-offset:2px;
+              text-decoration-color:var(--hair)}
+
+/* markets */
+/* Since 2026-09-07 this sits in the body above *Op de horizon*, not under the
+   masthead. It carries NO rules of its own — the tickers are already a visually
+   distinct band, and bracketing them in hairlines only added clutter. */
+.markets{display:flex;gap:1.2rem;overflow-x:auto;padding:.2rem 1.15rem;
+         margin:1.1rem -1.15rem;scrollbar-width:none;
+         font:.75rem/1 var(--sans);font-variant-numeric:tabular-nums}
+.markets::-webkit-scrollbar{display:none}
+.tk{display:flex;gap:.4rem;white-space:nowrap;align-items:baseline}
+.tk .n{color:var(--muted)}
+.tk .v{font-weight:600}
+.tk.up .v{color:var(--up)} .tk.dn .v{color:var(--dn)}
+.tk.up .v::before{content:"▲ ";font-size:.6em}
+.tk.dn .v::before{content:"▼ ";font-size:.6em}
+
+/* section furniture */
+section{margin-top:1.75rem}
+/* The day chart carries no heading and no rule, and sits straight under the
+   masthead — so it gets a small top margin of its own rather than a section's. */
+section.wx-card{margin-top:.9rem}
+/* The bulletin, closing the card under the plot. Centred, and with NO rule above
+   it — it belongs to the chart it sits under, and a divider made it read as a
+   separate block inside the same card. */
+.rain .wxb{margin-top:.55rem;text-align:center;
+           font:italic 400 .9rem/1.35 var(--serif);color:var(--ink);
+           text-wrap:balance}
+h2.sh{font:700 .64rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+      padding-bottom:.42rem;border-bottom:1.5px solid var(--ink);margin-bottom:.9rem}
+
+/* day chart — two series on two axes, kept apart by colour alone. Temperature
+   is the curve, stroked with the -3..30C ramp above (left axis, degrees); rain
+   is --wet, spent on the bars, the right-hand mm axis labels and the chance-of-
+   rain row under the hours, so every blue mark on the card belongs to one
+   series and every ramped mark to the other. That IS the legend. (Until
+   2026-09-07 rain was the plotted series and the line itself was --wet.)
+   .rc-line keeps a flat stroke as the fallback the inline gradient overrides.
+   Strokes are non-scaling so the hairlines stay hairlines when the SVG is
+   scaled up on a wide screen. */
+.rain{background:var(--card);border:1px solid var(--hair);border-radius:10px;
+      padding:.85rem .9rem .75rem;box-shadow:var(--shadow)}
+.rain svg{display:block;width:100%;height:auto;max-width:34rem;margin:0 auto}
+.rc-grid{stroke:var(--hair);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.rc-base{stroke:var(--rule);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.rc-tick{fill:var(--muted);font:400 10px var(--sans);font-variant-numeric:tabular-nums}
+.rc-bar{fill:var(--wet);opacity:.45}
+.rc-tick-mm{fill:var(--wet);font:400 10px var(--sans);font-variant-numeric:tabular-nums}
+.rc-prob{fill:var(--wet);font:400 9px var(--sans);font-variant-numeric:tabular-nums;
+         opacity:.9}
+/* Sun markers. One `color` per marker drives disc, rays and chevron through
+   currentColor, and tints the rule it caps; .rise and .set are the only two
+   places the hue is named. */
+.rc-sun-rule{stroke-width:1;fill:none;opacity:.32;vector-effect:non-scaling-stroke}
+.rc-sun-rule.rise{stroke:var(--sunup)}
+.rc-sun-rule.set{stroke:var(--sundown)}
+.rc-sun.rise{color:var(--sunup)}
+.rc-sun.set{color:var(--sundown)}
+.rc-sun circle{fill:currentColor}
+.rc-sun .ray path{stroke:currentColor;fill:none;stroke-width:1.1;
+                  stroke-linecap:round;vector-effect:non-scaling-stroke}
+.rc-sun .dir{stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;
+             stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.rc-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;
+         stroke-linecap:round;vector-effect:non-scaling-stroke}
+.rc-peak{fill:var(--ink);font:600 10px var(--sans);font-variant-numeric:tabular-nums}
+.rc-hit{fill:transparent}
+
+/* agenda board */
+.board{display:grid;gap:.6rem}
+.day{background:var(--card);border:1px solid var(--hair);border-radius:10px;
+     padding:.8rem .9rem;box-shadow:var(--shadow)}
+.day h3{font:700 .58rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+        color:var(--muted);margin-bottom:.55rem}
+.day ul{list-style:none;display:grid;gap:.45rem}
+.day li{display:flex;gap:.65rem;align-items:flex-start;font:.94rem/1.42 var(--serif)}
+.day li .tx{flex:1 1 auto;min-width:0}
+.day .t{flex:0 0 3.2rem;font:600 .78rem/1.6 var(--sans);color:var(--accent);
+        font-variant-numeric:tabular-nums}
+/* the weather cell of an agenda line: what it is doing AT that hour. The day's
+   own conditions are in the masthead ear and the chart above — repeating them
+   against every appointment would say nothing about the appointment. */
+.day .wx{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:.06rem;
+         margin-left:auto;padding-left:.6rem;border-left:1px solid var(--hair);
+         align-self:stretch;justify-content:center}
+.day .wx svg{width:19px;height:20.6px;display:block;overflow:visible}
+.day .wx .deg{font:600 .66rem/1 var(--sans);color:var(--muted);
+              font-variant-numeric:tabular-nums}
+.wx-ink{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;
+        stroke-linejoin:round}
+.wx-wet{fill:none;stroke:var(--wet);stroke-width:1.8;stroke-linecap:round;
+        stroke-linejoin:round}
+.count{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--hair);
+       border-radius:10px;padding:.85rem .9rem;box-shadow:var(--shadow)}
+.count .big{font:400 2.5rem/1 var(--serif);color:var(--accent);font-variant-numeric:tabular-nums}
+.count .lab{font:.93rem/1.35 var(--serif)}
+.count .lab .x{display:block;color:var(--muted);font-size:.8rem;margin-top:.2rem}
+
+/* lead */
+.kicker{font:700 .6rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;
+        color:var(--accent);margin-bottom:.55rem}
+h2.lead{font:700 clamp(1.55rem,6.8vw,2.1rem)/1.1 var(--serif);letter-spacing:-.012em;
+        margin-bottom:.75rem;text-wrap:balance}
+.lead-body p{font-size:1.03rem;line-height:1.63;margin-bottom:.8rem}
+.desk{margin-top:1.05rem;padding-top:.95rem;border-top:1px solid var(--hair);
+      font-size:.97rem;line-height:1.58}
+.desk b.runin{text-transform:uppercase;letter-spacing:.07em;font-size:.84rem}
+
+/* adviseur + briefs */
+.item{padding:.95rem 0;border-bottom:1px solid var(--hair)}
+.item:last-child{border-bottom:0}
+.item h3{font:600 1.03rem/1.32 var(--serif);margin-bottom:.38rem;text-wrap:balance}
+.item p{font-size:.95rem;line-height:1.56}
+.item .act{display:block;margin-top:.45rem;font-weight:700}
+.item .win{display:block;margin-top:.32rem;font:.83rem/1.45 var(--sans);color:var(--muted)}
+.item.prop{font-style:italic}
+.src{font:italic .81rem/1.5 var(--serif);color:var(--muted)}
+.sub-sh{font:700 .6rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+        color:var(--muted);margin:1.15rem 0 .1rem;padding-top:.95rem;border-top:1px solid var(--hair)}
+.status{margin-top:1.05rem;padding-top:.75rem;border-top:1px solid var(--rule);
+        font:.83rem/1.5 var(--sans);color:var(--muted)}
+/* The pulse now closes the body rather than sitting inside De Adviseur, so it
+   needs its own separation from whatever section ran last. */
+.status.end{margin-top:1.75rem}
+.status .od{font-weight:700;color:var(--accent)}
+
+/* feature boxes */
+.feature{background:var(--card);border:1px solid var(--rule);border-radius:10px;
+         padding:1.05rem;margin-bottom:.85rem;box-shadow:var(--shadow)}
+.feature h3{font:700 .6rem/1.35 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+            color:var(--accent);margin-bottom:.6rem}
+.feature p{font-size:.95rem;line-height:1.58}
+
+/* station log + colophon */
+.station{list-style:none;display:grid;gap:.45rem}
+.station li{font:.88rem/1.5 var(--sans)}
+footer{margin-top:2.1rem;padding-top:.95rem;border-top:2.5px solid var(--ink);
+       font:.79rem/1.5 var(--sans);color:var(--muted)}
+footer .otd{margin-bottom:.55rem;color:var(--ink)}
+footer b{letter-spacing:.14em;font-size:.7rem}
+</style>
+</head>
+<body>
+<header class="mast"><div class="wrap">
+<h1>De Daily Khabri</h1>
+<div class="sub">The Agarwal–Kadani Household · Amsterdam</div>
+<div class="rule2"></div>
+<div class="dateline">
+<div class="l"><div class="by"><b>izzard</b><span class="def">· noun: The letter Z.</span></div></div>
+<div class="r">Zaterdag · 24 oktober 2026</div>
+</div>
+</div></header>
+<main class="wrap">
+<section class="wx-card"><div class="rain"><svg viewBox="0 0 360 132"><defs><linearGradient id="tg1" gradientUnits="userSpaceOnUse" x1="0" y1="-223.2" x2="0" y2="278.4"><stop offset="0.0000" stop-color="var(--tc7)"/><stop offset="0.1212" stop-color="var(--tc6)"/><stop offset="0.2424" stop-color="var(--tc5)"/><stop offset="0.3636" stop-color="var(--tc4)"/><stop offset="0.4848" stop-color="var(--tc3)"/><stop offset="0.6667" stop-color="var(--tc2)"/><stop offset="0.8485" stop-color="var(--tc1)"/><stop offset="1.0000" stop-color="var(--tc0)"/></linearGradient></defs><path class="rc-sun-rule rise" d="M132.2 20.0V96.0"/><path class="rc-sun-rule set" d="M253.2 20.0V96.0"/><rect class="rc-bar" x="33.4" y="88.4" width="9.2" height="7.6"/><rect class="rc-bar" x="45.4" y="83.8" width="9.2" height="12.2"/><rect class="rc-bar" x="57.4" y="91.4" width="9.2" height="4.6"/><rect class="rc-bar" x="69.4" y="67.1" width="9.2" height="28.9"/><rect class="rc-bar" x="81.4" y="86.9" width="9.2" height="9.1"/><rect class="rc-bar" x="93.4" y="93.0" width="9.2" height="3.0"/><rect class="rc-bar" x="117.4" y="91.4" width="9.2" height="4.6"/><rect class="rc-bar" x="129.4" y="88.4" width="9.2" height="7.6"/><rect class="rc-bar" x="141.4" y="88.4" width="9.2" height="7.6"/><rect class="rc-bar" x="153.4" y="88.4" width="9.2" height="7.6"/><rect class="rc-bar" x="237.4" y="93.0" width="9.2" height="3.0"/><rect class="rc-bar" x="249.4" y="93.0" width="9.2" height="3.0"/><rect class="rc-bar" x="261.4" y="88.4" width="9.2" height="7.6"/><rect class="rc-bar" x="273.4" y="83.8" width="9.2" height="12.2"/><rect class="rc-bar" x="285.4" y="88.4" width="9.2" height="7.6"/><rect class="rc-bar" x="297.4" y="77.8" width="9.2" height="18.2"/><rect class="rc-bar" x="309.4" y="58.0" width="9.2" height="38.0"/><path class="rc-grid" d="M32.0 20.0H320.0"/><text class="rc-tick" x="26.0" y="23.4" text-anchor="end">14°</text><path class="rc-grid" d="M32.0 50.4H320.0"/><text class="rc-tick" x="26.0" y="53.8" text-anchor="end">12°</text><path class="rc-base" d="M32.0 96.0H320.0"/><text class="rc-tick" x="26.0" y="99.4" text-anchor="end">9°</text><text class="rc-tick-mm" x="326.0" y="23.4" text-anchor="start">5</text><text class="rc-tick-mm" x="326.0" y="99.4" text-anchor="start">0 mm</text><path class="rc-line" style="stroke:url(#tg1)" d="M32.0 35.2L44.0 35.2L56.0 35.2L68.0 50.4L80.0 65.6L92.0 65.6L104.0 65.6L116.0 65.6L128.0 65.6L140.0 80.8L152.0 65.6L164.0 65.6L176.0 50.4L188.0 50.4L200.0 35.2L212.0 35.2L224.0 35.2L236.0 65.6L248.0 80.8L260.0 80.8L272.0 80.8L284.0 80.8L296.0 80.8L308.0 80.8"/><text class="rc-peak" x="52.0" y="29.2" text-anchor="middle">13°</text><g class="rc-sun rise"><circle cx="132.2" cy="9.0" r="2.6"/><g class="ray"><path d="M136.0 9.0L138.0 9.0"/><path d="M134.9 11.7L136.3 13.1"/><path d="M132.2 12.8L132.2 14.8"/><path d="M129.5 11.7L128.1 13.1"/><path d="M128.4 9.0L126.4 9.0"/><path d="M129.5 6.3L128.1 4.9"/><path d="M132.2 5.2L132.2 3.2"/><path d="M134.9 6.3L136.3 4.9"/></g><path class="dir" d="M128.2 17.6L132.2 14.4L136.2 17.6"/></g><g class="rc-sun set"><circle cx="253.2" cy="9.0" r="2.6"/><g class="ray"><path d="M257.0 9.0L259.0 9.0"/><path d="M255.9 11.7L257.3 13.1"/><path d="M253.2 12.8L253.2 14.8"/><path d="M250.5 11.7L249.1 13.1"/><path d="M249.4 9.0L247.4 9.0"/><path d="M250.5 6.3L249.1 4.9"/><path d="M253.2 5.2L253.2 3.2"/><path d="M255.9 6.3L257.3 4.9"/></g><path class="dir" d="M249.2 14.4L253.2 17.6L257.2 14.4"/></g><text class="rc-tick" x="32.0" y="112" text-anchor="start">00</text><text class="rc-tick" x="68.0" y="112" text-anchor="middle">03</text><text class="rc-tick" x="104.0" y="112" text-anchor="middle">06</text><text class="rc-tick" x="140.0" y="112" text-anchor="middle">09</text><text class="rc-tick" x="176.0" y="112" text-anchor="middle">12</text><text class="rc-tick" x="212.0" y="112" text-anchor="middle">15</text><text class="rc-tick" x="248.0" y="112" text-anchor="middle">18</text><text class="rc-tick" x="284.0" y="112" text-anchor="middle">21</text><text class="rc-tick" x="320.0" y="112" text-anchor="end">24</text><text class="rc-prob" x="38.0" y="124" text-anchor="middle">100%</text><text class="rc-prob" x="74.0" y="124" text-anchor="middle">100%</text><text class="rc-prob" x="122.0" y="124" text-anchor="middle">100%</text><text class="rc-prob" x="158.0" y="124" text-anchor="middle">77%</text><text class="rc-prob" x="242.0" y="124" text-anchor="middle">6%</text><text class="rc-prob" x="278.0" y="124" text-anchor="middle">100%</text><text class="rc-prob" x="314.0" y="124" text-anchor="middle">100%</text><rect class="rc-hit" x="32.0" y="20.0" width="12.0" height="76.0"><title>00:00 · 13° · 100% kans · 0.5 mm</title></rect><rect class="rc-hit" x="44.0" y="20.0" width="12.0" height="76.0"><title>01:00 · 13° · 100% kans · 0.8 mm</title></rect><rect class="rc-hit" x="56.0" y="20.0" width="12.0" height="76.0"><title>02:00 · 13° · 100% kans · 0.3 mm</title></rect><rect class="rc-hit" x="68.0" y="20.0" width="12.0" height="76.0"><title>03:00 · 12° · 100% kans · 1.9 mm</title></rect><rect class="rc-hit" x="80.0" y="20.0" width="12.0" height="76.0"><title>04:00 · 11° · 100% kans · 0.6 mm</title></rect><rect class="rc-hit" x="92.0" y="20.0" width="12.0" height="76.0"><title>05:00 · 11° · 100% kans · 0.2 mm</title></rect><rect class="rc-hit" x="104.0" y="20.0" width="12.0" height="76.0"><title>06:00 · 11° · 100% kans</title></rect><rect class="rc-hit" x="116.0" y="20.0" width="12.0" height="76.0"><title>07:00 · 11° · 100% kans · 0.3 mm</title></rect><rect class="rc-hit" x="128.0" y="20.0" width="12.0" height="76.0"><title>08:00 · 11° · 100% kans · 0.5 mm</title></rect><rect class="rc-hit" x="140.0" y="20.0" width="12.0" height="76.0"><title>09:00 · 10° · 91% kans · 0.5 mm</title></rect><rect class="rc-hit" x="152.0" y="20.0" width="12.0" height="76.0"><title>10:00 · 11° · 77% kans · 0.5 mm</title></rect><rect class="rc-hit" x="164.0" y="20.0" width="12.0" height="76.0"><title>11:00 · 11° · 61% kans</title></rect><rect class="rc-hit" x="176.0" y="20.0" width="12.0" height="76.0"><title>12:00 · 12° · 40% kans</title></rect><rect class="rc-hit" x="188.0" y="20.0" width="12.0" height="76.0"><title>13:00 · 12° · 16% kans</title></rect><rect class="rc-hit" x="200.0" y="20.0" width="12.0" height="76.0"><title>14:00 · 13°</title></rect><rect class="rc-hit" x="212.0" y="20.0" width="12.0" height="76.0"><title>15:00 · 13°</title></rect><rect class="rc-hit" x="224.0" y="20.0" width="12.0" height="76.0"><title>16:00 · 13°</title></rect><rect class="rc-hit" x="236.0" y="20.0" width="12.0" height="76.0"><title>17:00 · 11° · 6% kans · 0.2 mm</title></rect><rect class="rc-hit" x="248.0" y="20.0" width="12.0" height="76.0"><title>18:00 · 10° · 34% kans · 0.2 mm</title></rect><rect class="rc-hit" x="260.0" y="20.0" width="12.0" height="76.0"><title>19:00 · 10° · 72% kans · 0.5 mm</title></rect><rect class="rc-hit" x="272.0" y="20.0" width="12.0" height="76.0"><title>20:00 · 10° · 100% kans · 0.8 mm</title></rect><rect class="rc-hit" x="284.0" y="20.0" width="12.0" height="76.0"><title>21:00 · 10° · 100% kans · 0.5 mm</title></rect><rect class="rc-hit" x="296.0" y="20.0" width="12.0" height="76.0"><title>22:00 · 10° · 100% kans · 1.2 mm</title></rect><rect class="rc-hit" x="308.0" y="20.0" width="12.0" height="76.0"><title>23:00 · 10° · 100% kans · 2.5 mm</title></rect></svg><div class="wxb">Boulo zorgt vanaf de avond voor regen en storm</div></div></section>
+<section><h2 class="sh">Agenda</h2><div class="board">
+<div class="day"><h3>Vandaag · Today</h3><ul>
+<li><span class="tx">No appointments — a quiet day.</span></li>
+<li><span class="tx">Tonight: clocks go back one hour (03:00 → 02:00)</span></li>
+</ul></div>
+<div class="day"><h3>Morgen · Tomorrow</h3><ul>
+<li><span class="tx">No appointments; first day on winter time</span></li>
+</ul></div>
+<div class="day"><h3>Week Ahead</h3><ul>
+<li><span class="tx">Mon 26 · Prenatal yoga, 18:30</span></li>
+<li><span class="tx">Tue 27 · Midwife, 11:15; house cleaning 13:00</span></li>
+<li><span class="tx">Wed 28 · Recliner delivery from 07:00; Dutch class 18:30</span></li>
+<li><span class="tx">Thu 29 · Due date</span></li>
+</ul></div>
+<div class="day"><h3>Notices</h3><ul>
+<li><span class="tx">□ Second Quax order still to come — a pallet means a call first</span></li>
+</ul></div>
+<div class="count"><div class="big">5</div><div class="lab">days until <b>Baby</b><span class="x">62 days to Eerste kerstdag (Christmas)</span></div></div>
+</div></section>
+<section>
+<div class="kicker">★ Lead Story</div>
+<h2 class="lead">Recliner Arrives Wednesday, Eve of the Due Date</h2>
+<div class="lead-body"><p>The electric recliner from Beliani has a delivery day. The carrier, TSN Groen, asked for a slot yesterday and by lunchtime it was booked: <b>Wednesday 28 October, somewhere between 07:00 and 20:00</b>. That is the day before the due date. The window will narrow: TSN promises a two-hour slot no later than 16:30 on Tuesday, and the driver phones about half an hour before arriving. Someone has to be home to take it in person — a housemate counts — and Beliani asked that the chair be checked for damage while the courier is still at the door. If anything is still to pay, it is card only, no cash. Why it matters to us: Wednesday also has Dutch class, and the baby may have its own plans — decide now who waits in. <span class="src">— TSN Groen and Beliani by e-mail, 20–23 Oct</span></p></div>
+<div class="desk"><b class="runin">Family Desk —</b> <b>Wednesday, part two.</b> The same day the chair comes, the car insurance moves to a.s.r.: Independer wrote on Thursday that the policy transfers on 28 October. Their mail shows no step for us to take — one to watch for a new policy document.</div>
+</section>
+<section><h2 class="sh">De Adviseur</h2>
+<div class="item"><h3>Brug Overtoomsesluis dicht (Overtoom bridge closed to cars and tram 1)</h3><p><span class="act">▸ Until 1 May 2027 cars and taxis cannot cross between Surinameplein and the Overtoom; traffic detours via the Zeilbrug and Kinkerbrug, up to 15 minutes extra, and tram 1 runs another route. Drive the route to the birth hospital once with the detour in it, and add the time when calling a taxi or planning kraamvisite. Bikes and pedestrians can usually cross (one side shut to bikes until end February); at night it may close to everyone.</span><span class="win">now – 1 May 2027 · on our doorstep</span> <span class="src">— amsterdam.nl, verified 24 Oct</span></p></div>
+<div class="item"><h3>Geel worden in de eerste week (newborn jaundice: when to call)</h3><p><span class="act">▸ Yellowing on day 3–4 is common and usually gone in a week; feed about 10 times a day. Call the midwife, GP or out-of-hours post at once if the baby turns yellow in the first 24 hours, or if yellow comes with poor drinking, drowsiness, under 36° or from 38°, a high-pitched cry, or pauses in breathing. Builds on the 18 Oct note: on a darker skin, check the whites of the eyes.</span><span class="win">from the birth, first week</span> <span class="src">— thuisarts.nl, verified 20 Oct</span></p></div>
+<div class="item"><h3>Denk Vooruit noodpakket (a 72-hour emergency kit, baby included)</h3><p><span class="act">▸ The government’s list: 3 litres of water per person per day, long-life food, battery radio and charged power bank, torch, first aid, blankets, whistle, cash, ID copies, numbers, spare keys — plus baby food and medicines (nappies are the correspondent’s own addition). Agree who collects the baby if one of you cannot get home. Low urgency: best done once the first weeks settle.</span><span class="win">any time · check every six months</span> <span class="src">— denkvooruit.nl, verified 24 Oct</span></p></div>
+<div class="sub-sh">Op de horizon</div>
+<div class="item"><h3>Medicijnen van opa en oma (grandparents’ medicines from India)</h3><p>if they fly in for the birth: sleeping pills and strong painkillers need a declaration arranged in India before departure, or Dutch customs can seize them. Original packs, hand luggage. <span class="src">nederlandwereldwijd.nl, verified 24 Oct</span></p></div>
+<div class="markets"><span class="tk up"><span class="n">EUR/INR 106.34</span><span class="v">0.03%</span></span><span class="tk dn"><span class="n">BABA</span><span class="v">5.36%</span></span><span class="tk dn"><span class="n">LULU</span><span class="v">4.85%</span></span><span class="tk dn"><span class="n">UBER</span><span class="v">3.43%</span></span><span class="tk dn"><span class="n">BKNG</span><span class="v">3.27%</span></span><span class="tk dn"><span class="n">NKE</span><span class="v">2.66%</span></span><span class="tk dn"><span class="n">CNDX</span><span class="v">2.35%</span></span><span class="tk up"><span class="n">FIG</span><span class="v">2.24%</span></span></div>
+</section>
+<section>
+<div class="feature">
+<h3>De Kleine Khabri — Week 40</h3>
+<p>Thirty-nine weeks and two days; five days to the due date. The baby is fully formed and mostly putting on fat, which keeps it warm after birth. Only a small share of babies arrive on the date itself: anything from now to about two weeks past it is normal. The midwife on Tuesday is the next check; past 41 weeks the talk usually turns to options for a nudge.</p>
+</div>
+<div class="feature">
+<h3>Deep Dive — Zelenskyy, unvarnished</h3>
+<p>On <i>The Diary of a CEO</i>, Ukraine’s president describes the personal cost of leading a country at war and argues that Putin’s invasion grows from an ambition to rebuild a Soviet-style empire, not from any real doubt about Ukraine’s statehood. He says Western partners warned of the attack but withheld the pre-emptive sanctions and weapons he asked for; that he turned down an early offer to leave Kyiv to keep the country’s nerve; and that Bucha made quick compromise impossible. He pushes back on Donald Trump’s claim that strikes on Russian energy raise US diesel prices, and calls a ceasefire without accountability a trap. <span class="src">— The Diary Of A CEO</span></p>
+</div>
+</section>
+<section><h2 class="sh">Station Log</h2><ul class="station">
+<li>⚠ Freeleech grabber still down</li>
+<li>Datasette and mail bridge each dropped out 4× on Friday morning, 10–12 min a time — all recovered</li>
+</ul></section>
+<footer>
+<div class="otd"><b>ON THIS DAY</b> — 2003: Concorde makes its last commercial flight.</div>
+<div class="colo">Editie Nr. 100 · generated 07:10</div>
+<div class="src">Weerbericht: <a href="https://www.buienradar.nl" rel="noopener">Buienradar</a> (Ed Aldus) · Woord van de dag: <a href="https://wordsmith.org/" rel="noopener">Wordsmith.org</a></div>
+</footer>
+</main>
+</body>
+</html>
