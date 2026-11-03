@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="light dark">
+<title>De Daily Khabri — Dinsdag · 3 november 2026 · Editie Nr. 110</title>
+<style>
+/* De Daily Khabri, mobile edition.
+   Palette and type are pulled from the printed paper, not from a web template:
+   Didot masthead -> ui-serif (New York on iOS, where this is actually read),
+   black ink on newsprint, hairline rules. The single accent is a Dutch-press
+   vermilion, spent only on kickers, time badges and the countdown numeral. */
+:root{
+  --paper:#fbfaf7; --ink:#111214; --muted:#6a6d73; --hair:#e2e1dc;
+  --rule:#c9c7c1; --accent:#c8102e; --up:#0a7d46; --dn:#c8102e; --wet:#2b6ca3;
+  --card:#ffffff; --shadow:0 1px 2px rgba(17,18,20,.05);
+  --serif:ui-serif,"New York","Iowan Old Style",Charter,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  /* temperature ramp, -3C -> 30C. Tuned dark enough to hold a 2px line on
+     newsprint; the dark theme lifts the same hues off near-black below. */
+  --tc0:#3d4db8; --tc1:#2f7ec9; --tc2:#1f968f; --tc3:#5d9b2f;
+  --tc4:#b8912a; --tc5:#e07a1f; --tc6:#d63b1f; --tc7:#a3181a;
+  --sunup:#d99a10; --sundown:#b8532c;   /* dawn gold, dusk ember */
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101113; --ink:#e8e7e3; --muted:#93969c; --hair:#26282c;
+    --rule:#3a3d42; --accent:#ff6b73; --up:#4cc98a; --dn:#ff6b73; --wet:#4a97d0;
+    --card:#17181b; --shadow:none;
+    --tc0:#6f7ee0; --tc1:#4f9ee8; --tc2:#2fb9ae; --tc3:#7fc44a;
+    --tc4:#e0be48; --tc5:#f79a3c; --tc6:#f2603f; --tc7:#d63b32;
+    --sunup:#f7c451; --sundown:#ef8a5c;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101113; --ink:#e8e7e3; --muted:#93969c; --hair:#26282c;
+  --rule:#3a3d42; --accent:#ff6b73; --up:#4cc98a; --dn:#ff6b73; --wet:#4a97d0;
+  --card:#17181b; --shadow:none;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--serif);padding:0 0 3rem}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:44rem;margin:0 auto;padding:0 1.15rem}
+
+/* masthead */
+header.mast{text-align:center;padding:1.6rem 0 0}
+.mast h1{font:400 clamp(2.1rem,11vw,3.1rem)/1 var(--serif);letter-spacing:.005em;text-wrap:balance}
+.mast .sub{font:600 .6rem/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;
+           color:var(--muted);margin-top:.55rem}
+.rule2{border-top:2.5px solid var(--ink);border-bottom:1px solid var(--ink);height:3px;margin:.75rem 0 0}
+/* No bottom rule (2026-09-07): the day-chart card sits directly beneath, and a
+   divider between the word of the day and the card was one line too many. */
+.dateline{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;
+          font:.72rem/1.45 var(--sans);color:var(--muted);padding:.6rem 0 0;
+          text-align:left}
+.dateline .r{text-align:right;flex:0 0 auto}
+/* the human bulletin in the left ear: a person's voice, so italic serif against
+   the sans furniture around it. The byline carries Buienradar's required credit
+   and link — see masthead_left(). */
+.dateline .l{flex:1 1 auto;min-width:0}
+.dateline .bul{font:italic 400 .92rem/1.35 var(--serif);color:var(--ink);
+               text-wrap:balance}
+.dateline .by{margin-top:.2rem;font:600 .58rem/1.4 var(--sans);letter-spacing:.13em;
+              text-transform:uppercase;color:var(--muted)}
+.dateline .by a{color:inherit;text-decoration:underline;text-underline-offset:2px;
+                text-decoration-color:var(--hair)}
+.dateline .by b{color:var(--ink)}
+.dateline .by .def{text-transform:none;letter-spacing:.01em;font-weight:400;
+                   margin-left:.35em}
+footer .src{margin-top:.5rem;font:.7rem/1.5 var(--sans);color:var(--muted)}
+footer .src a{color:inherit;text-decoration:underline;text-underline-offset:2px;
+              text-decoration-color:var(--hair)}
+
+/* markets */
+/* Since 2026-09-07 this sits in the body above *Op de horizon*, not under the
+   masthead. It carries NO rules of its own — the tickers are already a visually
+   distinct band, and bracketing them in hairlines only added clutter. */
+.markets{display:flex;gap:1.2rem;overflow-x:auto;padding:.2rem 1.15rem;
+         margin:1.1rem -1.15rem;scrollbar-width:none;
+         font:.75rem/1 var(--sans);font-variant-numeric:tabular-nums}
+.markets::-webkit-scrollbar{display:none}
+.tk{display:flex;gap:.4rem;white-space:nowrap;align-items:baseline}
+.tk .n{color:var(--muted)}
+.tk .v{font-weight:600}
+.tk.up .v{color:var(--up)} .tk.dn .v{color:var(--dn)}
+.tk.up .v::before{content:"▲ ";font-size:.6em}
+.tk.dn .v::before{content:"▼ ";font-size:.6em}
+
+/* section furniture */
+section{margin-top:1.75rem}
+/* The day chart carries no heading and no rule, and sits straight under the
+   masthead — so it gets a small top margin of its own rather than a section's. */
+section.wx-card{margin-top:.9rem}
+/* The bulletin, closing the card under the plot. Centred, and with NO rule above
+   it — it belongs to the chart it sits under, and a divider made it read as a
+   separate block inside the same card. */
+.rain .wxb{margin-top:.55rem;text-align:center;
+           font:italic 400 .9rem/1.35 var(--serif);color:var(--ink);
+           text-wrap:balance}
+h2.sh{font:700 .64rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+      padding-bottom:.42rem;border-bottom:1.5px solid var(--ink);margin-bottom:.9rem}
+
+/* day chart — two series on two axes, kept apart by colour alone. Temperature
+   is the curve, stroked with the -3..30C ramp above (left axis, degrees); rain
+   is --wet, spent on the bars, the right-hand mm axis labels and the chance-of-
+   rain row under the hours, so every blue mark on the card belongs to one
+   series and every ramped mark to the other. That IS the legend. (Until
+   2026-09-07 rain was the plotted series and the line itself was --wet.)
+   .rc-line keeps a flat stroke as the fallback the inline gradient overrides.
+   Strokes are non-scaling so the hairlines stay hairlines when the SVG is
+   scaled up on a wide screen. */
+.rain{background:var(--card);border:1px solid var(--hair);border-radius:10px;
+      padding:.85rem .9rem .75rem;box-shadow:var(--shadow)}
+.rain svg{display:block;width:100%;height:auto;max-width:34rem;margin:0 auto}
+.rc-grid{stroke:var(--hair);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.rc-base{stroke:var(--rule);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+.rc-tick{fill:var(--muted);font:400 10px var(--sans);font-variant-numeric:tabular-nums}
+.rc-bar{fill:var(--wet);opacity:.45}
+.rc-tick-mm{fill:var(--wet);font:400 10px var(--sans);font-variant-numeric:tabular-nums}
+.rc-prob{fill:var(--wet);font:400 9px var(--sans);font-variant-numeric:tabular-nums;
+         opacity:.9}
+/* Sun markers. One `color` per marker drives disc, rays and chevron through
+   currentColor, and tints the rule it caps; .rise and .set are the only two
+   places the hue is named. */
+.rc-sun-rule{stroke-width:1;fill:none;opacity:.32;vector-effect:non-scaling-stroke}
+.rc-sun-rule.rise{stroke:var(--sunup)}
+.rc-sun-rule.set{stroke:var(--sundown)}
+.rc-sun.rise{color:var(--sunup)}
+.rc-sun.set{color:var(--sundown)}
+.rc-sun circle{fill:currentColor}
+.rc-sun .ray path{stroke:currentColor;fill:none;stroke-width:1.1;
+                  stroke-linecap:round;vector-effect:non-scaling-stroke}
+.rc-sun .dir{stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;
+             stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.rc-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;
+         stroke-linecap:round;vector-effect:non-scaling-stroke}
+.rc-peak{fill:var(--ink);font:600 10px var(--sans);font-variant-numeric:tabular-nums}
+.rc-hit{fill:transparent}
+
+/* agenda board */
+.board{display:grid;gap:.6rem}
+.day{background:var(--card);border:1px solid var(--hair);border-radius:10px;
+     padding:.8rem .9rem;box-shadow:var(--shadow)}
+.day h3{font:700 .58rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+        color:var(--muted);margin-bottom:.55rem}
+.day ul{list-style:none;display:grid;gap:.45rem}
+.day li{display:flex;gap:.65rem;align-items:flex-start;font:.94rem/1.42 var(--serif)}
+.day li .tx{flex:1 1 auto;min-width:0}
+.day .t{flex:0 0 3.2rem;font:600 .78rem/1.6 var(--sans);color:var(--accent);
+        font-variant-numeric:tabular-nums}
+/* the weather cell of an agenda line: what it is doing AT that hour. The day's
+   own conditions are in the masthead ear and the chart above — repeating them
+   against every appointment would say nothing about the appointment. */
+.day .wx{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:.06rem;
+         margin-left:auto;padding-left:.6rem;border-left:1px solid var(--hair);
+         align-self:stretch;justify-content:center}
+.day .wx svg{width:19px;height:20.6px;display:block;overflow:visible}
+.day .wx .deg{font:600 .66rem/1 var(--sans);color:var(--muted);
+              font-variant-numeric:tabular-nums}
+.wx-ink{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;
+        stroke-linejoin:round}
+.wx-wet{fill:none;stroke:var(--wet);stroke-width:1.8;stroke-linecap:round;
+        stroke-linejoin:round}
+.count{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--hair);
+       border-radius:10px;padding:.85rem .9rem;box-shadow:var(--shadow)}
+.count .big{font:400 2.5rem/1 var(--serif);color:var(--accent);font-variant-numeric:tabular-nums}
+.count .lab{font:.93rem/1.35 var(--serif)}
+.count .lab .x{display:block;color:var(--muted);font-size:.8rem;margin-top:.2rem}
+
+/* lead */
+.kicker{font:700 .6rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;
+        color:var(--accent);margin-bottom:.55rem}
+h2.lead{font:700 clamp(1.55rem,6.8vw,2.1rem)/1.1 var(--serif);letter-spacing:-.012em;
+        margin-bottom:.75rem;text-wrap:balance}
+.lead-body p{font-size:1.03rem;line-height:1.63;margin-bottom:.8rem}
+.desk{margin-top:1.05rem;padding-top:.95rem;border-top:1px solid var(--hair);
+      font-size:.97rem;line-height:1.58}
+.desk b.runin{text-transform:uppercase;letter-spacing:.07em;font-size:.84rem}
+
+/* adviseur + briefs */
+.item{padding:.95rem 0;border-bottom:1px solid var(--hair)}
+.item:last-child{border-bottom:0}
+.item h3{font:600 1.03rem/1.32 var(--serif);margin-bottom:.38rem;text-wrap:balance}
+.item p{font-size:.95rem;line-height:1.56}
+.item .act{display:block;margin-top:.45rem;font-weight:700}
+.item .win{display:block;margin-top:.32rem;font:.83rem/1.45 var(--sans);color:var(--muted)}
+.item.prop{font-style:italic}
+.src{font:italic .81rem/1.5 var(--serif);color:var(--muted)}
+.sub-sh{font:700 .6rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+        color:var(--muted);margin:1.15rem 0 .1rem;padding-top:.95rem;border-top:1px solid var(--hair)}
+.status{margin-top:1.05rem;padding-top:.75rem;border-top:1px solid var(--rule);
+        font:.83rem/1.5 var(--sans);color:var(--muted)}
+/* The pulse now closes the body rather than sitting inside De Adviseur, so it
+   needs its own separation from whatever section ran last. */
+.status.end{margin-top:1.75rem}
+.status .od{font-weight:700;color:var(--accent)}
+
+/* feature boxes */
+.feature{background:var(--card);border:1px solid var(--rule);border-radius:10px;
+         padding:1.05rem;margin-bottom:.85rem;box-shadow:var(--shadow)}
+.feature h3{font:700 .6rem/1.35 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+            color:var(--accent);margin-bottom:.6rem}
+.feature p{font-size:.95rem;line-height:1.58}
+
+/* station log + colophon */
+.station{list-style:none;display:grid;gap:.45rem}
+.station li{font:.88rem/1.5 var(--sans)}
+footer{margin-top:2.1rem;padding-top:.95rem;border-top:2.5px solid var(--ink);
+       font:.79rem/1.5 var(--sans);color:var(--muted)}
+footer .otd{margin-bottom:.55rem;color:var(--ink)}
+footer b{letter-spacing:.14em;font-size:.7rem}
+</style>
+</head>
+<body>
+<header class="mast"><div class="wrap">
+<h1>De Daily Khabri</h1>
+<div class="sub">The Agarwal–Kadani Household · Amsterdam</div>
+<div class="rule2"></div>
+<div class="dateline">
+<div class="l"><div class="by"><b>adventurist</b><span class="def">· noun: One who pursues reckless ventures, especially in politics, military, foreign affair…</span></div></div>
+<div class="r">Dinsdag · 3 november 2026</div>
+</div>
+</div></header>
+<main class="wrap">
+<section class="wx-card"><div class="rain"><svg viewBox="0 0 360 132"><defs><linearGradient id="tg1" gradientUnits="userSpaceOnUse" x1="0" y1="-253.6" x2="0" y2="248.0"><stop offset="0.0000" stop-color="var(--tc7)"/><stop offset="0.1212" stop-color="var(--tc6)"/><stop offset="0.2424" stop-color="var(--tc5)"/><stop offset="0.3636" stop-color="var(--tc4)"/><stop offset="0.4848" stop-color="var(--tc3)"/><stop offset="0.6667" stop-color="var(--tc2)"/><stop offset="0.8485" stop-color="var(--tc1)"/><stop offset="1.0000" stop-color="var(--tc0)"/></linearGradient></defs><path class="rc-sun-rule rise" d="M123.8 20.0V96.0"/><path class="rc-sun-rule set" d="M237.4 20.0V96.0"/><rect class="rc-bar" x="57.4" y="50.4" width="9.2" height="45.6"/><path class="rc-grid" d="M32.0 20.0H320.0"/><text class="rc-tick" x="26.0" y="23.4" text-anchor="end">12°</text><path class="rc-grid" d="M32.0 50.4H320.0"/><text class="rc-tick" x="26.0" y="53.8" text-anchor="end">10°</text><path class="rc-base" d="M32.0 96.0H320.0"/><text class="rc-tick" x="26.0" y="99.4" text-anchor="end">7°</text><text class="rc-tick-mm" x="326.0" y="23.4" text-anchor="start">2</text><text class="rc-tick-mm" x="326.0" y="99.4" text-anchor="start">0 mm</text><path class="rc-line" style="stroke:url(#tg1)" d="M32.0 35.2L44.0 35.2L56.0 35.2L68.0 35.2L80.0 35.2L92.0 50.4L104.0 50.4L116.0 50.4L128.0 50.4L140.0 50.4L152.0 35.2L164.0 35.2L176.0 35.2L188.0 35.2L200.0 35.2L212.0 35.2L224.0 50.4L236.0 50.4L248.0 50.4L260.0 65.6L272.0 65.6L284.0 65.6L296.0 65.6L308.0 80.8"/><text class="rc-peak" x="52.0" y="29.2" text-anchor="middle">11°</text><g class="rc-sun rise"><circle cx="123.8" cy="9.0" r="2.6"/><g class="ray"><path d="M127.6 9.0L129.6 9.0"/><path d="M126.5 11.7L127.9 13.1"/><path d="M123.8 12.8L123.8 14.8"/><path d="M121.1 11.7L119.7 13.1"/><path d="M120.0 9.0L118.0 9.0"/><path d="M121.1 6.3L119.7 4.9"/><path d="M123.8 5.2L123.8 3.2"/><path d="M126.5 6.3L127.9 4.9"/></g><path class="dir" d="M119.8 17.6L123.8 14.4L127.8 17.6"/></g><g class="rc-sun set"><circle cx="237.4" cy="9.0" r="2.6"/><g class="ray"><path d="M241.2 9.0L243.2 9.0"/><path d="M240.1 11.7L241.5 13.1"/><path d="M237.4 12.8L237.4 14.8"/><path d="M234.7 11.7L233.3 13.1"/><path d="M233.6 9.0L231.6 9.0"/><path d="M234.7 6.3L233.3 4.9"/><path d="M237.4 5.2L237.4 3.2"/><path d="M240.1 6.3L241.5 4.9"/></g><path class="dir" d="M233.4 14.4L237.4 17.6L241.4 14.4"/></g><text class="rc-tick" x="32.0" y="112" text-anchor="start">00</text><text class="rc-tick" x="68.0" y="112" text-anchor="middle">03</text><text class="rc-tick" x="104.0" y="112" text-anchor="middle">06</text><text class="rc-tick" x="140.0" y="112" text-anchor="middle">09</text><text class="rc-tick" x="176.0" y="112" text-anchor="middle">12</text><text class="rc-tick" x="212.0" y="112" text-anchor="middle">15</text><text class="rc-tick" x="248.0" y="112" text-anchor="middle">18</text><text class="rc-tick" x="284.0" y="112" text-anchor="middle">21</text><text class="rc-tick" x="320.0" y="112" text-anchor="end">24</text><text class="rc-prob" x="62.0" y="124" text-anchor="middle">13%</text><rect class="rc-hit" x="32.0" y="20.0" width="12.0" height="76.0"><title>00:00 · 11° · 21% kans</title></rect><rect class="rc-hit" x="44.0" y="20.0" width="12.0" height="76.0"><title>01:00 · 11° · 18% kans</title></rect><rect class="rc-hit" x="56.0" y="20.0" width="12.0" height="76.0"><title>02:00 · 11° · 13% kans · 1.2 mm</title></rect><rect class="rc-hit" x="68.0" y="20.0" width="12.0" height="76.0"><title>03:00 · 11° · 7% kans</title></rect><rect class="rc-hit" x="80.0" y="20.0" width="12.0" height="76.0"><title>04:00 · 11° · 4% kans</title></rect><rect class="rc-hit" x="92.0" y="20.0" width="12.0" height="76.0"><title>05:00 · 10° · 5% kans</title></rect><rect class="rc-hit" x="104.0" y="20.0" width="12.0" height="76.0"><title>06:00 · 10° · 8% kans</title></rect><rect class="rc-hit" x="116.0" y="20.0" width="12.0" height="76.0"><title>07:00 · 10° · 10% kans</title></rect><rect class="rc-hit" x="128.0" y="20.0" width="12.0" height="76.0"><title>08:00 · 10° · 11% kans</title></rect><rect class="rc-hit" x="140.0" y="20.0" width="12.0" height="76.0"><title>09:00 · 10° · 11% kans</title></rect><rect class="rc-hit" x="152.0" y="20.0" width="12.0" height="76.0"><title>10:00 · 11° · 10% kans</title></rect><rect class="rc-hit" x="164.0" y="20.0" width="12.0" height="76.0"><title>11:00 · 11° · 8% kans</title></rect><rect class="rc-hit" x="176.0" y="20.0" width="12.0" height="76.0"><title>12:00 · 11° · 6% kans</title></rect><rect class="rc-hit" x="188.0" y="20.0" width="12.0" height="76.0"><title>13:00 · 11° · 4% kans</title></rect><rect class="rc-hit" x="200.0" y="20.0" width="12.0" height="76.0"><title>14:00 · 11° · 2% kans</title></rect><rect class="rc-hit" x="212.0" y="20.0" width="12.0" height="76.0"><title>15:00 · 11° · 1% kans</title></rect><rect class="rc-hit" x="224.0" y="20.0" width="12.0" height="76.0"><title>16:00 · 10°</title></rect><rect class="rc-hit" x="236.0" y="20.0" width="12.0" height="76.0"><title>17:00 · 10°</title></rect><rect class="rc-hit" x="248.0" y="20.0" width="12.0" height="76.0"><title>18:00 · 10°</title></rect><rect class="rc-hit" x="260.0" y="20.0" width="12.0" height="76.0"><title>19:00 · 9°</title></rect><rect class="rc-hit" x="272.0" y="20.0" width="12.0" height="76.0"><title>20:00 · 9°</title></rect><rect class="rc-hit" x="284.0" y="20.0" width="12.0" height="76.0"><title>21:00 · 9°</title></rect><rect class="rc-hit" x="296.0" y="20.0" width="12.0" height="76.0"><title>22:00 · 9°</title></rect><rect class="rc-hit" x="308.0" y="20.0" width="12.0" height="76.0"><title>23:00 · 8°</title></rect></svg><div class="wxb">Vanmiddag meer zon</div></div></section>
+<section><h2 class="sh">Agenda</h2><div class="board">
+<div class="day"><h3>Vandaag · Today</h3><ul>
+<li><span class="tx">Due date + 5 — forty weeks and five days</span></li>
+<li><span class="t">10:00</span><span class="tx">Midwife — dry, about 11°</span><span class="wx" title="10:00 · half bewolkt (partly cloudy) · 10% kans op regen · 11°"><svg viewBox="0 0 24 26" aria-hidden="true" focusable="false"><g class="wx-ink"><circle cx="16.4" cy="7.4" r="2.9"/><path d="M20.9 7.4L22.6 7.4"/><path d="M18.6 11.3L19.5 12.8"/><path d="M14.1 11.3L13.3 12.8"/><path d="M11.9 7.4L10.2 7.4"/><path d="M14.1 3.5L13.3 2.0"/><path d="M18.6 3.5L19.5 2.0"/><path d="M6.6 18.2h8.6a3.1 3.1 0 0 0 .3-6.2 4.6 4.6 0 0 0-8.7-1.1 3.2 3.2 0 0 0-.2 7.3Z"/></g></svg><span class="deg">11°</span></span></li>
+<li><span class="t">17:30</span><span class="tx">DHL delivery window opens (until 21:30) — dry evening</span><span class="wx" title="17:00 · onbewolkt (clear) · 10°"><svg viewBox="0 0 24 26" aria-hidden="true" focusable="false"><g class="wx-ink"><circle cx="12" cy="12" r="4.3"/><path d="M19.0 12.0L21.6 12.0"/><path d="M16.9 16.9L18.8 18.8"/><path d="M12.0 19.0L12.0 21.6"/><path d="M7.1 16.9L5.2 18.8"/><path d="M5.0 12.0L2.4 12.0"/><path d="M7.1 7.1L5.2 5.2"/><path d="M12.0 5.0L12.0 2.4"/><path d="M16.9 7.1L18.8 5.2"/></g></svg><span class="deg">10°</span></span></li>
+</ul></div>
+<div class="day"><h3>Morgen · Tomorrow</h3><ul>
+<li><span class="t">18:30</span><span class="tx">Dutch class (First Steps 2), Ru Paré, lokaal 2.2</span><span class="wx" title="18:00 · bewolkt (overcast) · 10°"><svg viewBox="0 0 24 26" aria-hidden="true" focusable="false"><g class="wx-ink"><path d="M7.4 16.2h9.4a3.3 3.3 0 0 0 .3-6.6 5 5 0 0 0-9.4-1.2 3.4 3.4 0 0 0-.3 7.8Z"/></g></svg><span class="deg">10°</span></span></li>
+<li><span class="tx">Next order due</span></li>
+</ul></div>
+<div class="day"><h3>Week Ahead</h3><ul>
+<li><span class="tx">Thu 5 Nov · 41 weeks; Amazon wall shelves due</span></li>
+<li><span class="tx">Tue 10 Nov · House cleaning, 13:00</span></li>
+</ul></div>
+<div class="day"><h3>Notices</h3><ul>
+<li><span class="tx">▸ Mintley says the car insurance has ended. If the car is staying on the road, check a new policy is in place. Keep the no-claims statement Mintley sent; the new insurer will ask for it</span></li>
+<li><span class="tx">□ DHL brings an Amazon parcel tonight, 17:30–21:30 (probably the USB charger)</span></li>
+<li><span class="tx">□ Next order due tomorrow, Wed 4 Nov</span></li>
+<li><span class="tx">□ The Amazon wall-shelf set now comes earlier: Thursday 5 Nov</span></li>
+</ul></div>
+<div class="count"><div class="big">+5</div><div class="lab">Baby — five days past the due date<span class="x">52 days to Eerste kerstdag (Christmas)</span></div></div>
+</div></section>
+<section>
+<div class="kicker">★ Lead Story</div>
+<h2 class="lead">The Car Insurance Has Ended: Check It Before the Hospital Run</h2>
+<div class="lead-body"><p>A short email from Mintley arrived overnight. It confirms that the Mintley car insurance <b>has been cancelled</b> (<i>opgezegd</i>). With it came the <i>verklaring schadevrije jaren</i>, the statement of claim-free years, which shows <b>two years</b>. Mintley says you need this statement when you take out a new car insurance. <br><br> This may be planned. If the car is being sold, or a new policy elsewhere already starts, nothing is wrong, and the only job is to keep the statement somewhere you can find it. But the timing matters this week. The baby is five days past the due date, and the household’s own car-seat notes were written around the Mazda 3 for the drive home from the hospital. So take two minutes today to confirm one of these: <b>the car has a new insurer from the day Mintley stopped</b>, or <b>the car won’t be driven</b>. If neither is true, sort it before anyone needs the car in a hurry. <br><br> For a new policy, have the no-claims statement ready. Your claim-free years set the discount, so the new insurer will ask for them. The email itself contains nothing else to act on.</p></div>
+</section>
+<section><h2 class="sh">De Adviseur</h2>
+</section>
+<section>
+<div class="feature">
+<h3>De Kleine Khabri — Week 40 + 5</h3>
+<p>Five days past the due date, and the midwife sees Raj at 10:00 this morning. On Thursday it will be 41 weeks. Nothing in the household’s calendar, reminders or notes says the baby has arrived, so this paper still counts in pregnancy weeks. The threads below are other parents’ experiences, gathered by our baby correspondent. They are not medical advice. The call rules printed earlier still apply. <em><b>How accurate was the last growth scan?</b> On r/BabyBumps, about 70 parents compared the weight estimate from their 34–36-week growth scan with the real birth weight. Sometimes it was almost exact, but often it was well off, in both directions. One parent was told to expect “4 to 5 kilos” and had a baby of just over 3. Several point out that a baby still puts on about 200 grams a week in the last month. Worth knowing now you are overdue: an estimated weight is an estimate with a wide margin. If it comes up in a talk about induction or waiting, ask the midwife how much weight she gives it. <span class="src"><a href="https://www.reddit.com/r/BabyBumps/comments/1xm9r0b/how_accurate_was_your_late_3rd_trimester_scan/" rel="noopener">r/BabyBumps thread</a></span></em> <em><b>“Staying awake to check he’s still breathing.”</b> A popular r/NewParents thread (134 points, 69 replies) where parents, often with humour, describe what anxiety did to them after the birth. They heard phantom crying while the baby slept on their lap. They jolted awake sure the baby was in the duvet when it was in the crib. They held a finger under the baby’s nose to feel the breath. Much of this watchfulness is common and often fades by itself. If the worry starts to run the days or doesn’t ease, raise it with the midwife, the kraamverzorgende or the huisarts. <span class="src"><a href="https://www.reddit.com/r/NewParents/comments/1xm8j4t/what_kind_of_things_did_postpartum_anxiety_have/" rel="noopener">r/NewParents thread</a></span></em> <em><b>How long recovery took: from two weeks to over two months.</b> In r/NewParents (81 replies), mothers say how long it took before walking, sitting and lifting felt normal again. The answers vary a lot. Some with a second-degree tear felt fairly well after about two weeks; others only after 8 to 10 weeks. A few still had problems months later, such as leaking urine, and pelvic-floor physiotherapy comes up for that. The takeaway: recovery has no fixed timetable. Expect little of the first weeks, and bring any lasting complaints to the six-week check-up. <span class="src"><a href="https://www.reddit.com/r/NewParents/comments/1xmd784/ladies_how_long_did_it_take_you_to_heal_after/" rel="noopener">r/NewParents thread</a></span></em> <em><b>Visitors and vaccinations.</b> A parent expecting a winter baby asked r/ScienceBasedParenting whether there is a scientific reason to ask visitors to be vaccinated. Replies mostly name whooping cough (<i>kinkhoest</i>), because it can be serious in newborns who are not yet vaccinated themselves. They note that Germany’s Robert Koch Institute advises a whooping-cough jab for parents, family and visitors, and some add the flu jab. Raj’s own whooping-cough jab in pregnancy is already done. Something to agree before the kraambezoek starts, in flu and RSV season: what you ask of visitors (no visit with a cold or a cold sore, wash hands) and who tells the family. This is discussion, not Dutch medical advice. <span class="src"><a href="https://www.reddit.com/r/ScienceBasedParenting/comments/1xid7au/people_around_newborns/" rel="noopener">r/ScienceBasedParenting thread</a></span></em> <em><b>“They only want to visit if everyone can hold the baby.”</b> A mother on r/beyondthebump, recovering from an emergency caesarean, says her family think a visit isn’t worth it unless everyone gets to hold the baby. Replies back her: her recovery and the baby’s health come first, and visits are for the mother too, not just the baby. Worth deciding together before visiting starts: holding or not, how long, ill means don’t come, and who tells the family. Replies say it is often easier if the partner does it. <span class="src"><a href="https://www.reddit.com/r/beyondthebump/comments/1xmbzo2/my_family_thinks_its_not_worth_visiting_my/" rel="noopener">r/beyondthebump thread</a></span></em> <em><b>Weight loss in the first week, and the guilt.</b> A mother on r/NewParents describes how her sleepy, slightly yellow baby lost more weight than expected in the first days, and how guilty she felt. Parents with a similar start reply: sleepy feeding, jaundice, topping up with formula, and their child was fine afterwards. In the kraamweek the kraamverzorgende and midwife track weight, wees and poos, and colour. Ask how it is going and what you can track yourselves. If the baby is very sleepy, feeds poorly or gets more yellow, call the midwife. <span class="src"><a href="https://www.reddit.com/r/NewParents/comments/1xlxgh3/newborn_weight_loss_help_intense_guilt/" rel="noopener">r/NewParents thread</a></span></em> <em><b>Grieving a birth that went differently.</b> Two weeks after a hard birth (pre-eclampsia, a 30-hour induction, complications), a mother on r/beyondthebump writes that she is grieving how differently it all went from what she hoped. Other parents recognise the feeling. For the partner too: disappointment or sadness about how a birth went is common and allowed. Talking helps many parents, and a follow-up talk with the midwife or hospital can help make sense of what happened. If it stays heavy, or images keep coming back, see the huisarts. <span class="src"><a href="https://www.reddit.com/r/beyondthebump/comments/1xlnfia/grieving_my_pregnancybirthpostpartumnewborn/" rel="noopener">r/beyondthebump thread</a></span></em> <em><b>Do formula babies sleep through sooner?</b> In r/breastfeeding (100 replies), the parent of a 10-week-old asks whether breastfeeding stops a baby sleeping through, as a night-nanny claimed. The top replies disagree. Waking every 2–3 hours to feed is normal at that age whether breast- or bottle-fed, and temperament seems to matter more than the type of feeding. So expect night feeds for the first months whatever you choose, and agree how you will split the nights. <span class="src"><a href="https://www.reddit.com/r/breastfeeding/comments/1xm0naz/can_ebf_babies_sleep_through_the_night/" rel="noopener">r/breastfeeding thread</a></span></em> <em><b>“My baby doesn’t get the recommended sleep.”</b> A parent of a poor sleeper asks r/ScienceBasedParenting whether missing the recommended hours does harm. The top reply sets the guidelines side by side: the WHO gives 14 to 17 hours a day for 0 to 3 months. A care professional adds that a baby has to sleep truly unusually little before it is a worry. The numbers are a broad average, and babies differ a lot. If in doubt, ask the consultatiebureau. <span class="src"><a href="https://www.reddit.com/r/ScienceBasedParenting/comments/1xi7an9/long_term_effects_for_babies_who_dont_meet/" rel="noopener">r/ScienceBasedParenting thread</a></span></em> <em><b>Is white noise bad for a baby’s brain?</b> After viral videos claimed it harms brain development, a parent looked up the research. Replies on r/ScienceBasedParenting find the claim overblown: the study being quoted was not about babies and white noise. A well-voted reply says a systematic review suggests soft sound during sleep probably does no harm. Loud sound left on all day probably does, partly because the baby then hears less of other sounds, such as voices. If you use a sound machine: keep it quiet, away from the crib, and on only for sleep. <span class="src"><a href="https://www.reddit.com/r/ScienceBasedParenting/comments/1xkhenj/white_noise_for_infant_sleep/" rel="noopener">r/ScienceBasedParenting thread</a></span></em></p>
+</div>
+<div class="feature">
+<h3>Expat Life</h3>
+<p><em><b>The geboortekaartje (birth card): one for the office, and why it can read as an invitation.</b> An expat mother on r/Netherlands asked how to handle colleagues. The Dutch replies agreed: you usually send <b>one</b> card to the office, where it ends up on the kitchen fridge, and individual cards only to colleagues who are also friends. Several parents warn that some people read a birth card as an invitation to come and visit (<i>kraambezoek</i>). So send cards to people you don’t mind having over, and leave visiting hours and your phone number off if you want to control the flow. Others say the card is only an announcement, and that grandparents’ friends are better served by an e-card they can forward. Useful for an Indian family, where relatives expect to come straight away. Families here describe the Dutch norm as visits by appointment, a short stay, and <i>beschuit met muisjes</i> (rusks with sugared aniseed). A cultural note, not a rule. <span class="src"><a href="https://www.reddit.com/r/Netherlands/comments/1plm142/geboortekaartjes_advice_please/" rel="noopener">r/Netherlands thread</a></span></em> <em><b>What parents here wish they’d known in the first weeks.</b> A couple whose daughter had just been born asked r/Netherlands for advice and got 70 replies. The most upvoted: fight the tiredness together, not each other, and step in before your partner has to ask. It is fine to tell people not to visit in the first month. One parent had too many guests too soon and wouldn’t do it again, which is worth talking about early if family is flying in from India. For practical help, parents point to the consultatiebureau’s free check-ups and advice (“the infrastructure for parents is fantastic”, even if leave is short). One parent suggests renting a hospital-grade breast pump through Medipoint instead of buying a consumer one; they put the cost at about €15 a month, which is their claim, not checked. Another says some physiotherapy cover pays for treatment of blocked ducts, so check your own policy. For more, people suggested the Dutch-language subs r/zwangerNL and r/PapasEnMamas. <span class="src"><a href="https://www.reddit.com/r/Netherlands/comments/1pea7z5/new_or_experienced_parents_in_the_netherlands/" rel="noopener">r/Netherlands thread</a></span></em> <em><b>Building a parent circle when family is 7,000 km away.</b> A pregnant newcomer on r/Netherlands wrote that she had no friends with children here. The replies gave a practical map of how Dutch parents find each other. Centering-pregnancy groups (antenatal care shared with the same group of mothers) often turn into friendships. Facebook groups for babies due in the same month become small groups that keep meeting for years; one Dutch mother and one father both say theirs still does. Nationality groups such as “Indian moms in NL” exist too. Other tips: the local library for toddler activities, baby swimming from about six months, and the gemeente’s free Centrum voor Jeugd en Gezin (family support centre), which answers questions for any family with a child aged 0–4. Families here say the first months, while both parents are on leave, are the time to start. <span class="src"><a href="https://www.reddit.com/r/Netherlands/comments/1rtwejl/being_pregnant_in_the_netherlands_without_friends/" rel="noopener">r/Netherlands thread</a></span></em> <em><b>Indian parents on Dutch public school versus the international route.</b> Years away, but it shapes choices made now, such as the daycare language. An Indian parent asked r/Netherlands how Indian children get on in Dutch public schools. One Indian family put their daughter in Dutch-language care at 2½. She learned Dutch well and picked up English reading and writing with a tutor between 4 and 7, helped by all the English media around her. Another commenter told Indian parents that Dutch public schools are well funded and nothing like an Indian government school. They called the idea that private English-medium school is higher status “a mental block”. A four-language family warns the other way: their preschool advised dropping a language because it was too much. Others say a child in daycare from age one will be fine, that many schools start English in groep 1–2, and that parents should learn Dutch themselves so the child doesn’t become the family translator. A small thread with mixed views. <span class="src"><a href="https://www.reddit.com/r/Netherlands/comments/1u16ujq/indian_kids_in_dutch_public_schools/" rel="noopener">r/Netherlands thread</a></span></em> <em><b>When Dutch children cycle and travel alone.</b> This week a parent asked r/Netherlands at what age children can cycle alone to clubs in Amsterdam or take public transport. The answers show how different the norms are from India’s: a few streets alone at 5–6 in a quiet neighbourhood. One Randstad parent let their children bike five minutes to school alone from 8, to a sports club with a friend at 10, and in the winter dark at 12. Someone who grew up in Amsterdam went to clubs alone from 8. Most add that it depends on the route and the child, and that traffic, not strangers, is the main danger. One commenter guesses 10+ for central Amsterdam. Another says that in Utrecht children reportedly must be 12 to ride the bus alone, so check local rules. Families here say this independence starts with cycling together very early. <span class="src"><a href="https://www.reddit.com/r/Netherlands/comments/1xlhtwe/kids_travelling_by_themselves/" rel="noopener">r/Netherlands thread</a></span></em></p>
+</div>
+<div class="feature">
+<h3>What Locals Know</h3>
+<p><b>“Hoi mam, this is my new number”: hear their voice before you pay.</b> When a “relative” messages from a new number and asks for money, locals call them back on the number they already have, or ask something only the real person would know. Your bank will never ask you to move money to a “safe account” (<i>veilige rekening</i>), and never asks for your PIN or codes. The same goes for a payment letter that looks like it’s from your insurer: call the number on the insurer’s real website, not the one in the letter. If you are caught out anyway, call your bank straight away and report it to the police and the Fraudehelpdesk. Worth passing on to family in India who message on WhatsApp too. <span class="src"><a href="https://www.veiligbankieren.nl/fraude/whatsapp-fraude/" rel="noopener">veiligbankieren.nl</a></span> <b>A GP appointment is 10 to 15 minutes. Have more than one thing? Ask for a longer one.</b> Newcomers often find Dutch GP visits rushed. Locals tell the assistant (<i>doktersassistent</i>) when booking that they have several issues, and get a 20- or 30-minute slot. They write their questions down beforehand. In the room they use the “3 goede vragen” (three good questions): What are my options? What are the pros and cons? What does that mean for me? Useful in the months ahead, when one visit may cover mother and baby questions together. <span class="src"><a href="https://www.thuisarts.nl/dutch-healthcare/how-can-i-ask-my-gp-questions-or-make-appointment" rel="noopener">thuisarts.nl</a></span> <em><b>Dutch Christmas runs over two days, and diaries fill up in November.</b> Locals tend to have Christmas dinner on the 25th or 26th, often one day with each side of the family. The 24th is an ordinary working day for many people. If you want Dutch friends or colleagues over during the holidays, or want to join them, ask now, in November. A tabletop grill dinner (<i>gourmetten</i>) is a typical, easy option. This is social custom from one well-discussed thread, not a rule. <span class="src"><a href="https://www.reddit.com/r/Netherlands/comments/1pt89ij/when_do_the_dutch_have_christmas_dinner/" rel="noopener">r/Netherlands thread</a></span></em> <b>Fridge at 4°, and know the two dates.</b> Locals set the fridge to 4 °C and check it with a cheap fridge thermometer. Many Dutch fridges run warmer than people think. Food marked <i>te gebruiken tot</i> (TGT, “use by”: meat, fish) goes in the bin once the date passes, even unopened, or into the freezer on the day you buy it. Food marked <i>ten minste houdbaar tot</i> (THT, “best before”) is checked by looking, smelling and tasting, and is often fine after the date. Storing breast milk is a separate topic, for the baby pages. <span class="src"><a href="https://www.voedingscentrum.nl/nl/thema/kopen-koken-bewaren/eten-bewaren/bewaartips-voor-koelkast-vriezer-en-voorraadkast.aspx" rel="noopener">voedingscentrum.nl</a></span></p>
+</div>
+</section>
+<section><h2 class="sh">Station Log</h2><ul class="station">
+<li>⚠ Monitoring unreachable again this morning, the fourth day running since Saturday. Worth a look</li>
+</ul></section>
+<div class="markets"><span class="tk up"><span class="n">EUR/INR 106.19</span><span class="v">0.30%</span></span><span class="tk up"><span class="n">BKNG</span><span class="v">3.79%</span></span><span class="tk up"><span class="n">BABA</span><span class="v">3.51%</span></span><span class="tk dn"><span class="n">ADA</span><span class="v">2.95%</span></span><span class="tk dn"><span class="n">CNDX</span><span class="v">2.85%</span></span><span class="tk dn"><span class="n">DOGE</span><span class="v">2.58%</span></span><span class="tk up"><span class="n">FIG</span><span class="v">2.54%</span></span><span class="tk up"><span class="n">FLXI</span><span class="v">2.38%</span></span></div>
+<div class="status end">□ <b>Khabri Reported</b> — 45 open, <span class="od">7 achterstallig (overdue)</span>, 1 due today; oudste (oldest): Registering the birth — who goes, where and by which day, 33 dagen. <span class="src">stand 06:45</span></div>
+<footer>
+<div class="otd"><b>ON THIS DAY</b> — 1988: Mercenaries try to overthrow the government of the Maldives. At the Maldivian president’s request, Indian troops put the coup down within 24 hours.</div>
+<div class="colo">Editie Nr. 110 · generated 07:25</div>
+<div class="src">Weerbericht: <a href="https://www.buienradar.nl" rel="noopener">Buienradar</a> (Ed Aldus) · Woord van de dag: <a href="https://wordsmith.org/" rel="noopener">Wordsmith.org</a></div>
+</footer>
+</main>
+</body>
+</html>
